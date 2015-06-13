@@ -1,6 +1,8 @@
 {
   "db": {
+    "url": "mongodb://localhost:27017",
+    "database": "detranWeb",
     "name": "db",
-    "connector": "memory"
+    "connector": "mongodb"
   }
 }
