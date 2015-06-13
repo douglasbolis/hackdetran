@@ -2,8 +2,8 @@
 <hr>
 <form name="userForm" novalidate ng-submit="main.addTodo()">
     <div class="form-group"
-         ng-class="{'has-error': userForm.content.$invalid
-        && userForm.content.$dirty}">
+         ng-class="{'has-error': main.userForm.content.$invalid
+        && main.userForm.content.$dirty}">
         <input type="text" class="form-control focus" name="content"
                placeholder="Content" autocomplete="off" required
                ng-model="main.newUser.content">
@@ -12,11 +12,11 @@
       Content is required.
     </span>
     </div>
-    <button class="btn btn-default" ng-disabled="userForm.$invalid">Add</button>
+    <button class="btn btn-default" ng-disabled="main.userForm.$invalid">Add</button>
 </form>
 <hr>
 <div class="list-group">
-    <a class="list-group-item" ng-repeat="user in main.users">{{main.user.content}}&nbsp;
+    <a class="list-group-item" ng-repeat="user in main.users"><p ng-repeat="i in user" ng-bind="i"></p>&nbsp;
         <i class="glyphicon glyphicon-remove pull-right"
            ng-click="main.removeUser(user)"></i></a>
 </div>
