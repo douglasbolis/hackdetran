@@ -7,23 +7,86 @@
     "validateUpsert": true
   },
   "properties": {
-    "renavam": {
-      "type": "string",
-      "required": true
-    },
     "placa": {
       "type": "string",
       "required": true
     },
-    "email": {
+    "renavam": {
       "type": "string",
       "required": true
     },
+    "placaAnt": {
+      "type": "string"
+    },
+    "tipo": {
+      "type": "string"
+    },
+    "categoria": {
+      "type": "string"
+    },
+    "especie": {
+      "type": "string"
+    },
+    "lugares": {
+      "type": "string"
+    },
+    "marcaModelo": {
+      "type": "string"
+    },
+    "fabModelo": {
+      "type": "string"
+    },
+    "potencia": {
+      "type": "string"
+    },
+    "combustivel": {
+      "type": "string"
+    },
+    "cor": {
+      "type": "string"
+    },
+    "carroceria": {
+      "type": "string"
+    },
+    "propAnterior": {
+      "type": "string"
+    },
+    "origemVeiculo": {
+      "type": "string"
+    },
+    "municipioEmplacamento": {
+      "type": "string"
+    },
+    "licenciadoAte": {
+      "type": "string"
+    },
+    "AdiquiridoEm": {
+      "type": "string"
+    },
+    "situacao": {
+      "type": "string"
+    },
+    "restricaoVenda": {
+      "type": "string"
+    },
+    "infoContrato": {
+      "type": "string"
+    },
+    "infoPendentes": {
+      "type": "string"
+    },
+    "indicativoClonagem": {
+      "type": "string"
+    },
+    "impedimentos": {
+      "type": "string"
+    },
+    "averbacao": {
+      "type": "string"
+    },
     "userID": {
       "type": "string",
-      "id": false,
-      "required": true,
-      "index": true
+      "required": true
     }
   },
   "validations": [],
