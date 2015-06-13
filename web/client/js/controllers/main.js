@@ -22,7 +22,6 @@ angular
                 .$promise
                 .then(function(user) {
                     vm.newUser = '';
-                    vm.userForm.content.$setPristine();
                     $('.focus').focus();
                     getUsers();
                 });
