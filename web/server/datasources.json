@@ -4,5 +4,11 @@
     "database": "detranWeb",
     "name": "db",
     "connector": "mongodb"
+  },
+  "mongoDB": {
+    "host": "localhost",
+    "port": 27017,
+    "name": "mongoDB",
+    "connector": "mongodb"
   }
 }
