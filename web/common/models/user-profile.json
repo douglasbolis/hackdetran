@@ -1,0 +1,33 @@
+{
+  "name": "userProfile",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "userID": {
+      "type": "object",
+      "id": true,
+      "required": true,
+      "index": true
+    },
+    "renavam": {
+      "type": "string",
+      "required": true
+    },
+    "placa": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}

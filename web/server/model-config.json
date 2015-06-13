@@ -37,5 +37,11 @@
     "public": true,
     "$promise": {},
     "$resolved": true
+  },
+  "userProfile": {
+    "dataSource": "mongoDB",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
   }
 }
