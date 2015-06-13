@@ -38,13 +38,13 @@
             </span>
         </div>
         <div class="form-group col-md-4"
-             ng-class="{'has-error': main.userForm.userId.$invalid
-            && main.userForm.userId.$dirty}">
-            <input type="text" class="form-control " name="userId"
+             ng-class="{'has-error': main.userForm.userID.$invalid
+            && main.userForm.userID.$dirty}">
+            <input type="text" class="form-control " name="userID"
                    placeholder="Id Usuário" autocomplete="off" required
-                   ng-model="main.newUser.userId">
+                   ng-model="main.newUser.userID">
         <span class="has-error control-label" ng-show="
-            main.userForm.userId.$invalid && main.userForm.userId.$dirty">
+            main.userForm.userID.$invalid && main.userForm.userID.$dirty">
           Campo requirido.
         </span>
         </div>
