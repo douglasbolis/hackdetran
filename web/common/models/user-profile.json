@@ -7,6 +7,12 @@
     "validateUpsert": true
   },
   "properties": {
+    "userID": {
+      "type": "object",
+      "id": true,
+      "required": true,
+      "index": true
+    },
     "renavam": {
       "type": "string",
       "required": true
@@ -18,12 +24,6 @@
     "email": {
       "type": "string",
       "required": true
-    },
-    "idUser": {
-      "type": "object",
-      "id": true,
-      "required": true,
-      "index": true
     }
   },
   "validations": [],
