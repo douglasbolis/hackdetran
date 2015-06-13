@@ -19,7 +19,7 @@
       "type": "string",
       "required": true
     },
-    "userID": {
+    "userId": {
       "type": "string",
       "id": false,
       "required": true,
