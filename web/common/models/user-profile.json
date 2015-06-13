@@ -85,7 +85,8 @@
       "type": "string"
     },
     "userID": {
-      "type": "string",
+      "type": "object",
+      "id": true,
       "required": true
     }
   },
