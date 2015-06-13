@@ -1,6 +1,6 @@
 *.csv
 *.dat
-web/node_modules/
+web/node_modules/loopback-datasource-juggler/.idea/loopback-data.iml
 *.log
 *.out
 *.pid
@@ -11,10 +11,6 @@ web/node_modules/
 *.tgz
 *.xml
 .DS_Store
-.idea
-.idea/
-.idea/*
-.vagrant/
 web/client/lib/
 .project
 .strong-pm

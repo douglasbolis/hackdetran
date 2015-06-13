@@ -2,6 +2,7 @@
   "mongoDB": {
     "host": "localhost",
     "port": 27017,
+    "database": "hackdetran",
     "name": "mongoDB",
     "connector": "mongodb"
   },
