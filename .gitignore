@@ -12,7 +12,7 @@ web/node_modules/loopback-datasource-juggler/.idea/loopback-data.iml
 *.xml
 .DS_Store
 .idea
-client/lib/
+web/client/lib/
 .project
 .strong-pm
 coverage
