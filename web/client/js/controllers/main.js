@@ -11,7 +11,6 @@ angular
                 .$promise
                 .then(function(results) {
                     vm.users = results;
-                    console.log(vm.users);
                 });
         }
         getUsers();
