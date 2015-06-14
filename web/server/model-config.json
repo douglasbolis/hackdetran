@@ -42,6 +42,13 @@
     "dataSource": "mongoDB",
     "public": true,
     "$promise": {},
-    "$resolved": true
+    "$resolved": true,
+    "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    }
+  ]
   }
 }
