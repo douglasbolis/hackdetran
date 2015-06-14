@@ -7,7 +7,8 @@ import sbt._
 object xBuild extends Build {
 
 
-
+  // packages
+  lazy val scalaj =  "org.scalaj" %% "scalaj-http" % "1.1.4"
 
   // Resolvers
   lazy val local = "Local Maven Repository" at "file://" + Path.userHome + "/.m2/repository"
@@ -48,7 +49,8 @@ object xBuild extends Build {
   lazy val integrator = Project(
     id = "integrator",
     base = file("integrator"),
-    settings = commonSettings
+    settings = commonSettings ++ Seq(
+      libraryDependencies ++= Seq(scalaj))
   )
 
 
