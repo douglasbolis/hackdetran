@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Login</title>
+</head>
+<body>
+<div id="login-view" class="page-body login-page login-form-fall">
+    <div class="login-container">
+        <div class="login-form">
+            <div class="login-content">
+                <form action="/login" method="post" role="form" id="form_login" class="validate">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control"
+                                   name="email" id="username"
+                                   placeholder="Usuário"
+                                   autocomplete="off"
+                                   data-validate="required"
+                                   data-message-required="Este é um campo obrigatório."
+                                   data-message-minlength="Digite pelo menos 8 caracteres."/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="entypo-key"></i>
+                            </div>
+                            <input type="password" class="form-control"
+                                   name="password" id="password"
+                                   placeholder="Senha"
+                                   autocomplete="off"
+                                   data-validate="required"
+                                   data-message-required="Este é um campo obrigatório."
+                                   data-message-minlength="Digite pelo menos 8 caracteres."/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit"
+                                class="btn btn-primary btn-block btn-login" style="white-space: normal">
+                            Entrar
+                            <i class="entypo-login"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#login-view").fadeIn('1s', function () {
+        $(".login-form").css({
+            top: 0, opacity: 1});
+        $(".login-form .form-group").css({opacity: 1});
+    });
+</script>
+
+</body>
+</html>
