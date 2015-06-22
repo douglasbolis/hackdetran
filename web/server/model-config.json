@@ -1,6 +1,7 @@
 {
   "_meta": {
     "sources": [
+      "./node_modules/loopback-component-passport/lib/models",
       "loopback/common/models",
       "loopback/server/models",
       "../common/models",
@@ -42,6 +43,13 @@
     "dataSource": "mongoDB",
     "public": true,
     "$promise": {},
-    "$resolved": true
+    "$resolved": true,
+    "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    }
+  ]
   }
 }

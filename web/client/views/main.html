@@ -1,0 +1,60 @@
+<h1>UserProfile list</h1>
+<hr>
+<form name="userForm" novalidate ng-submit="main.addUser()">
+    <div class="col-md-12">
+        <div class="form-group col-md-4"
+             ng-class="{'has-error': main.userForm.renavam.$invalid
+            && main.userForm.renavam.$dirty}">
+            <input type="text" class="form-control focus" name="renavam"
+                   placeholder="Renavam" autocomplete="off" required
+                   ng-model="main.newUser.renavam">
+        <span class="has-error control-label" ng-show="
+            main.userForm.renavam.$invalid && main.userForm.renavam.$dirty">
+          Campo requirido.
+        </span>
+        </div>
+        <div class="form-group col-md-4"
+                       ng-class="{'has-error': main.userForm.placa.$invalid
+                && main.userForm.placa.$dirty}">
+            <input type="text" class="form-control " name="placa"
+                   placeholder="Placa" autocomplete="off" required
+                   ng-model="main.newUser.placa">
+            <span class="has-error control-label" ng-show="
+                main.userForm.placa.$invalid && main.userForm.placa.$dirty">
+              Campo requirido.
+            </span>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group col-md-4"
+             ng-class="{'has-error': main.userForm.email.$invalid
+                && main.userForm.email.$dirty}">
+            <input type="text" class="form-control " name="email"
+                   placeholder="Email" autocomplete="off" required
+                   ng-model="main.newUser.email">
+            <span class="has-error control-label" ng-show="
+                main.userForm.email.$invalid && main.userForm.email.$dirty">
+              Campo requirido.
+            </span>
+        </div>
+        <div class="form-group col-md-4"
+             ng-class="{'has-error': main.userForm.userID.$invalid
+            && main.userForm.userID.$dirty}">
+            <input type="text" class="form-control " name="userID"
+                   placeholder="Id Usuário" autocomplete="off" required
+                   ng-model="main.newUser.userID">
+        <span class="has-error control-label" ng-show="
+            main.userForm.userID.$invalid && main.userForm.userID.$dirty">
+          Campo requirido.
+        </span>
+        </div>
+    </div>
+
+    <button class="btn btn-default" ng-disabled="userForm.$invalid">Add</button>
+</form>
+<hr>
+<div class="list-group">
+    <a class="list-group-item" ng-repeat="user in main.users">{{user.renavam + ' / ' + user.placa}}&nbsp;
+        <i class="glyphicon glyphicon-remove pull-right"
+           ng-click="main.removeUser(user)"></i></a>
+</div>
