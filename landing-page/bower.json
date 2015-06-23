@@ -1,0 +1,22 @@
+{
+  "name": "eMulta",
+  "version": "0.0.1",
+  "homepage": "https://github.com/davidpvilaca/hackdetran",
+  "authors": [
+    "davidpvilaca <davidpvilaca@hotmail.com>"
+  ],
+  "description": "Landing Page",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angularjs": "~1.4.1"
+  }
+}
