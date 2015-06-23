@@ -2,5 +2,9 @@
 # http://git-scm.com/docs/gitignore
 
 node_modules/
+www/lib
 www/lib/
-www/lib/ionic
+www/lib/*
+www/lib/ionic/
+www/lib/ionic/*
+www/lib/**/*
