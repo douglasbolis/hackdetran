@@ -1,63 +1,105 @@
-angular.module('starter.controllers', [])
-/*
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
-  
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+(function () {
+    'use strict';
+    angular.module('app.controllers', [])
+        .controller('LoginSociais', function ($scope, $state, $cookieStore) {
 
-  // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
+            /**
+             * SOCIAL LOGIN
+             * Facebook and Google
+             */
+                // FB Login
+            $scope.fbLogin = function () {
+                FB.login(function (response) {
+                    if (response.authResponse) {
+                        getUserInfo();
+                    } else {
+                        console.log('User cancelled login or did not fully authorize.');
+                    }
+                }, {scope: 'email,user_photos,user_videos'});
 
-  // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
-  };
+                function getUserInfo() {
+                    // get basic info
+                    FB.api('/me', function (response) {
+                        console.log('Facebook Login RESPONSE: ' + angular.toJson(response));
+                        // get profile picture
+                        FB.api('/me/picture?type=normal', function (picResponse) {
+                            console.log('Facebook Login RESPONSE: ' + picResponse.data.url);
+                            response.imageUrl = picResponse.data.url;
+                            // store data to DB - Call to API
+                            // Todo
+                            // After posting user data to server successfully store user data locally
+                            var user = {};
+                            user.name = response.name;
+                            user.email = response.email;
+                            if (response.gender) {
+                                response.gender.toString().toLowerCase() === 'male' ? user.gender = 'M' : user.gender = 'F';
+                            } else {
+                                user.gender = '';
+                            }
+                            user.profilePic = picResponse.data.url;
+                            $cookieStore.put('userInfo', user);
+                            $state.go('dashboard');
 
-  // Open the login modal
-  $scope.login = function() {
-    $scope.modal.show();
-  };
-})
+                        });
+                    });
+                }
+            };
+            // END FB Login
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
-})
+            // Google Plus Login
+            $scope.gplusLogin = function () {
+                var myParams = {
+                    // Replace client id with yours
+                    'clientid': '18301237550-3vlqoed2en4lvq6uuhh88o2h1l9m70tr.apps.googleusercontent.com',
+                    'cookiepolicy': 'single_host_origin',
+                    'callback': loginCallback,
+                    'approvalprompt': 'force',
+                    'scope': 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.profile.emails.read'
+                };
+                gapi.auth.signIn(myParams);
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-})*/
+                function loginCallback(result) {
+                    if (result['status']['signed_in']) {
+                        var request = gapi.client.plus.people.get({'userId': 'me'});
+                        request.execute(function (resp) {
+                            console.log('Google+ Login RESPONSE: ' + angular.toJson(resp));
+                            var userEmail;
+                            if (resp['emails']) {
+                                for (var i = 0; i < resp['emails'].length; i++) {
+                                    if (resp['emails'][i]['type'] == 'account') {
+                                        userEmail = resp['emails'][i]['value'];
+                                    }
+                                }
+                            }
+                            // store data to DB
+                            var user = {};
+                            user.name = resp.displayName;
+                            user.email = userEmail;
+                            if (resp.gender) {
+                                resp.gender.toString().toLowerCase() === 'male' ? user.gender = 'M' : user.gender = 'F';
+                            } else {
+                                user.gender = '';
+                            }
+                            user.profilePic = resp.image.url;
+                            $cookieStore.put('userInfo', user);
+                            $state.go('dashboard');
+                        });
+                    }
+                }
+            };
+            // END Google Plus Login
 
-.controller('Login', function($scope, $stateParams) {
-    var vm = this;
+        })
 
-    // Form data for the login modal
-    vm.loginData = {};
-    vm.msgError = '';
+        .controller('Dashboard', function ($scope, $window, $state, $cookieStore) {
+            // Set user details
+            $scope.user = $cookieStore.get('userInfo');
 
-    vm.login = {"username": "joao", "password": "123"};
-
-    // Perform the login action when the user submits the login form
-    vm.doLogin = function() {
-        if (vm.loginData == vm.login) {
-            vm.msgError = '';
-            console.log("igual >>>> passed");
-        } else {
-            vm.msgError = "Login ou senha incorreta";
-            console.log("diferente <<<< don't passed");
-        }
-    };
-});
+            // Logout user
+            $scope.logout = function () {
+                $cookieStore.remove("userInfo");
+                $state.go('welcome');
+                $window.location.reload();
+            };
+        });
+})();

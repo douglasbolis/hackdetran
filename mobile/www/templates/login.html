@@ -1,4 +1,48 @@
-<ion-modal-view>
+<script>
+    // Facebbok OAuth init
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '1529225140628860', // Replace the App ID with yours
+            status: true, // check login status
+            cookie: true, // enable cookies to allow the server to access the session
+            xfbml: true  // parse XFBML
+        });
+    };
+
+    // Load the SDK asynchronously
+    (function (d) {
+        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement('script');
+        js.id = id;
+        js.async = true;
+        js.src = "//connect.facebook.net/en_US/all.js";
+        ref.parentNode.insertBefore(js, ref);
+    }(document));
+    // Facebbok OAuth init - END
+
+    // Google OAuth Init
+    (function () {
+        var po = document.createElement('script');
+        po.type = 'text/javascript';
+        po.async = true;
+        po.src = 'https://apis.google.com/js/client.js?onload=onLoadCallback';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(po, s);
+    })();
+
+    function onLoadCallback() {
+        // Replace the API key with yours
+        gapi.client.setApiKey('AIzaSyC5JgBIrjOGKDAIZLcsVHvgkjjGkkrZTqk');
+        gapi.client.load('plus', 'v1', function () {
+        });
+    }
+    // Google Oauth Init - END
+</script>
+
+<!--<ion-modal-view>
   <ion-header-bar>
     <h1 class="title">Login</h1>
   </ion-header-bar>
@@ -13,11 +57,36 @@
           <span class="input-label">Senha</span>
           <input type="password" ng-model="login.loginData.password">
         </label>
-        <span ng-bind="login.msgError"></span>
+        <p ng-hide="login.msgError == ''"
+                 data-ng-bind="login.msgError"
+                 class="control-label"></p>
         <label class="item">
-          <button class="button button-block button-positive" type="submit">Log in</button>
+          <button class="button button-block button-positive" type="submit">Login</button>
         </label>
       </div>
     </form>
   </ion-content>
-</ion-modal-view>
+</ion-modal-view>-->
+
+<!--        -->
+<ion-view title="" id="welcome-view" hide-nav-bar="true">
+    <ion-content>
+        <div  class="logo-welcome"></div>
+        <div class="login-btns">
+            <div id="social-links">
+                <ul>
+                    <li ng-click="fbLogin()"><span class="ifacebook"><img src="img/social-icons/facebook.png"></span><a href="#" class="afacebook">sign in with facebook</a></li>
+                    <li ng-click="gplusLogin()"><span class="igoogleplus"><img src="img/social-icons/googleplus.png"></span><a href="#" class="agoogleplus">sign in with google+</a></li>
+                </ul>
+            </div>
+            <hr id="login-divider" />
+            <div id="login-reg">
+                <button id="btn-login" class="button button-clear button-positive uppercase">Login</button>
+                <button id="btn-reg" class="button button-clear button-positive uppercase">Register</button>
+            </div>
+        </div>
+    </ion-content>
+    <div id="footer" class="bar bar-footer">
+        <div class="title em-footer-title">© E-MULTAS | 2015</div>
+    </div>
+</ion-view>
