@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.emultas825929" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.prodution.emultas" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>E-Multas</name>
   <description>
-        E-Multas |
+        E-Multas | Interface do usuário com o detran para visualizar suas multas com mais agilidade e facilidade
     </description>
   <author email="xdevel@xdevel.com.br" href="xdevel.com.br">
       Xdevel Sistemas

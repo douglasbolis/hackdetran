@@ -32,6 +32,11 @@ oauthApp.config(function ($stateProvider, $urlRouterProvider) {
                 url: "/dashboard",
                 templateUrl: "partials/dashboard.html",
                 controller: "dashboardCtrl"
+            })
+            .state('newcar', {
+                url: "/newcar",
+                templateUrl: "partials/newCar.html",
+                controller: "dashboardCtrl"
             });
     // default route           
     $urlRouterProvider.otherwise("/welcome");

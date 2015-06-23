@@ -1,7 +1,8 @@
 <ion-view>
     <ion-header-bar class="bar-header bar-positive">
-        <div class="title uppercase">Welcome</div>
-        <button class="button button-clear" ng-click="logout()">Logout</button>
+        <button class="button button-clear" ng-click="newCar()">Novo Carro</button>
+        <div class="title uppercase">Perfil</div>
+        <button class="button button-clear" ng-click="logout()">Sair</button>
     </ion-header-bar>
     <ion-content>
         <div class="list">
@@ -46,7 +47,6 @@
                     <ion-checkbox class="em-gender-cb" ng-model="isFemale" ng-change="isFemale ? user.gender='F' : user.gender = 'M';
                         isMale = false" ng-checked="user.gender === 'F'">Female</ion-checkbox>
                 </label>
-
             </div>
         </div>
     </ion-content>
