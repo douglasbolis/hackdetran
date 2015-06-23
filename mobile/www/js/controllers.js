@@ -31,7 +31,7 @@
                             var user = {};
                             user.name = response.name;
                             user.email = response.email;
-                            if (response.gender) {
+                            if(response.gender) {
                                 response.gender.toString().toLowerCase() === 'male' ? user.gender = 'M' : user.gender = 'F';
                             } else {
                                 user.gender = '';
@@ -50,7 +50,7 @@
             $scope.gplusLogin = function () {
                 var myParams = {
                     // Replace client id with yours
-                    'clientid': '18301237550-3vlqoed2en4lvq6uuhh88o2h1l9m70tr.apps.googleusercontent.com',
+                    'clientid': '202926292506-3q45qdjt44kmr1ap0vb2vnn5utumchr2.apps.googleusercontent.com',
                     'cookiepolicy': 'single_host_origin',
                     'callback': loginCallback,
                     'approvalprompt': 'force',
@@ -75,7 +75,7 @@
                             var user = {};
                             user.name = resp.displayName;
                             user.email = userEmail;
-                            if (resp.gender) {
+                            if(resp.gender) {
                                 resp.gender.toString().toLowerCase() === 'male' ? user.gender = 'M' : user.gender = 'F';
                             } else {
                                 user.gender = '';
