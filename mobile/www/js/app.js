@@ -1,7 +1,7 @@
 // App.js
-var oauthApp = angular.module('oauthApp', ['ngCookies', 'ionic', 'oauthApp.controllers']);
+var app = angular.module('app', ['ngCookies', 'ionic', 'app.controllers']);
 
-oauthApp.run(function ($rootScope, $cookieStore, $state) {
+app.run(function ($rootScope, $cookieStore, $state) {
     // Check login session
     $rootScope.$on('$stateChangeStart', function (event, next, current) {
         var userInfo = $cookieStore.get('userInfo');
@@ -20,7 +20,7 @@ oauthApp.run(function ($rootScope, $cookieStore, $state) {
 });
 
 // Routes
-oauthApp.config(function ($stateProvider, $urlRouterProvider) {
+app.config(function ($stateProvider, $urlRouterProvider) {
     // setup states
     $stateProvider
             .state('welcome', {

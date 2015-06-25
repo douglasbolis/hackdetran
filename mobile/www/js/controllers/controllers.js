@@ -1,5 +1,5 @@
-var oauthApp = angular.module('oauthApp.controllers', []);
-oauthApp.controller('welcomeCtrl', function ($scope, $state, $cookieStore) {
+var app = angular.module('app.controllers', []);
+app.controller('welcomeCtrl', function ($scope, $state, $cookieStore) {
 
     /**
      * SOCIAL LOGIN
@@ -90,7 +90,7 @@ oauthApp.controller('welcomeCtrl', function ($scope, $state, $cookieStore) {
 });
 
 // Dashboard/Profile Controller
-oauthApp.controller('dashboardCtrl', function ($scope, $window, $state, $cookieStore, $ionicModal, $timeout) {
+app.controller('dashboardCtrl', function ($scope, $window, $state, $cookieStore, $ionicModal, $timeout, $ionicSideMenuDelegate) {
     // Set user details
     $scope.user = $cookieStore.get('userInfo');
     
@@ -126,6 +126,10 @@ oauthApp.controller('dashboardCtrl', function ($scope, $window, $state, $cookieS
     // Open the carro modal
     $scope.newCar = function() {
         $scope.modal.show();
+    };
+
+    $scope.openmenu = function() {
+        $ionicSideMenuDelegate.toggleLeft();
     };
 
     // Perform the carro action when the user submits the carro form
