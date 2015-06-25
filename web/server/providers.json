@@ -1,0 +1,47 @@
+{
+  "facebook-login": {
+    "provider": "facebook",
+    "module": "passport-facebook",
+    "clientID": "1632721477014484",
+    "clientSecret": "016a544efe1468634c18d5a35a681720",
+    "callbackURL": "http://localhost:3000/auth/facebook/callback",
+    "authPath": "/auth/facebook",
+    "callbackPath": "/auth/facebook/callback",
+    "successRedirect": "/auth/account",
+    "scope": ["email"]
+  },
+  "google-link": {
+    "provider": "google",
+    "module": "passport-google-oauth",
+    "strategy": "OAuth2Strategy",
+    "clientID": "202926292506-3q45qdjt44kmr1ap0vb2vnn5utumchr2.apps.googleusercontent.com",
+    "clientSecret": "olTZ4FzJ0rHHjkwIud055rd1",
+    "callbackURL": "http://localhost:3000/link/google/callback",
+    "authPath": "/link/google",
+    "callbackPath": "/link/google/callback",
+    "successRedirect": "/link/account",
+    "scope": ["email", "profile"],
+    "link": true
+  },
+  "ms-ad": {
+    "provider": "ms-ad",
+    "authScheme":"ldap",
+    "module": "passport-ldapauth",
+    "authPath": "/auth/msad",
+    "successRedirect": "/auth/account",
+    "failureRedirect": "/msad",
+    "failureFlash": true,
+    "session": true,
+    "LdapAttributeForLogin": "mail",
+    "LdapAttributeForUsername": "mail",
+    "LdapAttributeForMail": "mail",
+    "server":{
+      "url": "ldap://ldap.example.org:389/dc=example,dc=org",
+      "bindDn": "bindUsername",
+      "bindCredentials": "bindPassword",
+      "searchBase": "ou=people,dc=example,dc=org",
+      "searchAttributes": ["cn", "mail", "uid", "givenname"],
+      "searchFilter": "(&(objectcategory=person)(objectclass=user)(|(samaccountname={{username}})(mail={{username}})))"
+    }
+  }
+}

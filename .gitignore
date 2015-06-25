@@ -13,6 +13,7 @@ web/node_modules/loopback-datasource-juggler/.idea/loopback-data.iml
 *.xml
 .DS_Store
 .idea
+.idea/
 web/client/lib/
 .project
 .strong-pm
