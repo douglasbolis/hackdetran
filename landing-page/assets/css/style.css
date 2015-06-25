@@ -485,6 +485,7 @@ label {
 	==================================================*/ 
 #slider {
 	background-color: #ecf0f1;
+	background-image: url('../images/capixaba.jpg');
 }
 
 .carousel-control.left, .carousel-control.right {
@@ -569,6 +570,7 @@ label {
 	==================================================*/ 
 #newsletter {
 	text-align: center;
+	height: 83%
 }
 #newsletter .overview p.lead {
 	margin: 30px 10%;
@@ -703,4 +705,8 @@ label {
 	.faq-block {
 		margin: 0;
 	}
+}
+div.teamBloco {
+	background-color: black;
+	opacity: 0.7;
 }
