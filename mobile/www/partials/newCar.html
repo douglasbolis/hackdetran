@@ -1,25 +1,30 @@
 <ion-modal-view>
-  <ion-header-bar>
-    <h1 class="title">Novo Carro</h1>
-  </ion-header-bar>
-  <ion-content>
+	<div class="bar bar-header bar-calm">
+		<h1 class="title">Carro Novo</h1>
+	</div>
+  <ion-content style="padding-top: 70px">
     <form ng-submit="doAdd()">
       <div class="list">
         <label class="item item-input">
-          <span class="input-label">Placa</span>
-          <input type="text" ng-model="car.placa">
+          <input type="text" ng-model="car.renavan" placeholder="Renavan">
         </label>
-          <label class="item item-input">
-              <span class="input-label">Renavan</span>
-              <input type="text" ng-model="car.renavan">
-          </label>
-        <div class="col-md-12 form-group">
-            <div class="item">
-              <button class="col-md-3 button button-positive" type="submit">Adicionar</button>
-              <button class="col-md-3 button button-positive" ng-click="closeAddCar()">Voltar</button>
-            </div>
+        <label class="item item-input">
+          <input type="password" ng-model="car.placa" placeholder="Placa">
+        </label>
+	  </div>
+        <div class="form-group">
+			
+			<div class="row">
+				<div class="col">
+					<button class="button button-block button-positive" type="submit">Adicionar</button>
+					</div>
+
+				<div class="col">
+						<button class="button button-block button-positive" ng-click="closeAddCar()">Voltar</button>
+				</div>
+			</div>
+			
         </div>
-      </div>
     </form>
   </ion-content>
 </ion-modal-view>
