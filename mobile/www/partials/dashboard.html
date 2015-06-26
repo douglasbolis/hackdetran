@@ -1,9 +1,6 @@
 <ion-side-menus enable-menu-with-back-views="false">
     <ion-side-menu-content>
-        <ion-nav-bar class="bar-stable">
-            <ion-nav-back-button>
-            </ion-nav-back-button>
-
+        <ion-nav-bar class="bar-calm">
             <ion-nav-buttons side="left" class="success">
                 <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-click="openmenu()">
                 </button>
@@ -14,7 +11,7 @@
     </ion-side-menu-content>
 
     <ion-side-menu side="left">
-        <ion-header-bar class="bar-header bar-positive">
+        <ion-header-bar class="bar-header bar-dark">
             <div class="title uppercase">Menu</div>
         </ion-header-bar>
         <ion-content>
@@ -33,9 +30,12 @@
                     <div class="profile-background" ng-style="{'background-image': 'url(' + user.profilePic + ')'}"></div>
                 </div>
                 <div class="list">
-                    <label class="item item-input">
-                        <button class="button button-clear" ng-click="newCar()">Novo Carro</button>
-                    </label>
+                    <ion-item menu-close href="#/dashboard/dash">
+                        Dashboard
+                    </ion-item>
+                    <ion-item menu-close ng-click="newCar()">
+                        Novo Carro
+                    </ion-item>
                     <ion-item menu-close href="#/dashboard/index">
                         Meus Carros
                     </ion-item>
@@ -44,12 +44,12 @@
                         <span></span>
                     </label>
                     <label class="item item-input">
-                        <span class="input-label">Nome</span><br>
-                        <label>{{user.name}}</label>
+                        <span class="input-label col col-20">Nome</span>
+                        <span class="col col-80">{{user.name}}</span>
                     </label>
                     <label class="item item-input field-disabled">
-                        <span class="input-label">Email</span><br>
-                        <label>{{user.email}}</label>
+                        <span class="input-label col col-20">Email</span>
+                        <span class="col col-80">{{user.email}}</span>
                     </label>
                     <label class="item item-input field-disabled">
                         <span class="input-label"></span>
