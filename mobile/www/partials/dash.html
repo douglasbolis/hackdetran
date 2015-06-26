@@ -1,0 +1,25 @@
+<ion-view view-title="Dashboard">
+    <ion-content>
+        <div class="card">
+            <div class="item item-divider">
+                <span>Débito Total:</span>
+            </div>
+            <div class="item item-text-wrap">
+                R$1.750,00
+            </div>
+        </div>
+        <div class="card">
+            <div class="item">
+                <c3chart bindto-id="donut-plot1-chart">
+                    <chart-column column-id="Penalidades"
+                                  column-values="5"
+                                  column-type="donut"/>
+                    <chart-column column-id="Infrações Atuadas"
+                                  column-values="3"
+                                  column-type="donut"/>
+                    <chart-donut title="Avisos" width="60"/>
+                </c3chart>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

@@ -55,7 +55,7 @@ app.factory('dadosUser', function(){
                     }
                     user.profilePic = picResponse.data.url;
                     $cookieStore.put('userInfo', user);
-                    $location.path('/dashboard/index');
+                    $location.path('/dashboard/dash');
 
                 });
             });
@@ -175,4 +175,8 @@ app.controller('dashboardCtrl', [
 }])
     .controller('indexCtrl', ['$scope', 'dadosUser', function($scope, dadosUser) {
         $scope.carros = dadosUser.getVeiculos()
+    }])
+    .controller('dash', ['$scope', 'dadosUser', function($scope, dadosUser) {
+        $scope.carros = dadosUser.getVeiculos();
+        $scope.test = '';
     }]);
