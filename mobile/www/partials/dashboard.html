@@ -34,13 +34,27 @@
                     <div class="profile-background" ng-style="{'background-image': 'url(' + user.profilePic + ')'}"></div>
                 </div>
                 <div class="list">
+                    <label class="item item-input">
+                        <button class="button button-clear" ng-click="newCar()">Novo Carro</button>
+                    </label>
                     <label class="item item-input field-disabled">
-                        <span class="input-label">Email</span>
-                        <input ng-model="user.email" type="text" placeholder="user@gmail.com">
+                        <span class="input-label"></span>
+                        <span ng-model=""></span>
                     </label>
                     <label class="item item-input">
-                        <span class="input-label">Display Name</span>
-                        <input ng-model="user.name" type="text" placeholder="Chanu Sukarno">
+                        <span class="input-label">Nome</span>
+                        <span ng-model="user.name"></span>
+                    </label>
+                    <label class="item item-input field-disabled">
+                        <span class="input-label">Email</span>
+                        <span ng-model="user.email"></span>
+                    </label>
+                    <label class="item item-input field-disabled">
+                        <span class="input-label"></span>
+                        <span ng-model=""></span>
+                    </label>
+                    <label class="item item-input">
+                        <button class="button button-clear" ng-click="logout()">Sair</button>
                     </label>
                 </div>
             </div>

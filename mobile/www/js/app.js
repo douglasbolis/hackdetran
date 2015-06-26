@@ -1,7 +1,18 @@
 // App.js
 var app = angular.module('app', ['ngCookies', 'ionic', 'app.controllers']);
 
-app.run(function ($rootScope, $cookieStore, $state) {
+app.run(function ($rootScope, $cookieStore, $state, $ionicPlatform) {
+    $ionicPlatform.ready(function() {
+        // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+        // for form inputs)
+        if (window.cordova && window.cordova.plugins.Keyboard) {
+            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+        }
+        if (window.StatusBar) {
+            // org.apache.cordova.statusbar required
+            StatusBar.styleDefault();
+        }
+    });
     // Check login session
     $rootScope.$on('$stateChangeStart', function (event, next, current) {
         var userInfo = $cookieStore.get('userInfo');
