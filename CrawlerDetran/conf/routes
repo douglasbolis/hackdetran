@@ -3,9 +3,19 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index
+#GET        /                    controllers.Application.index
+#Usuario
+POST        /api/user/login                 controllers.UserController.login
+#Veiculo
+GET         /api/veiculos/get/:email        controllers.VeiculoController.get(email)
+POST        /api/veiculos/add               controllers.VeiculoController.add
+GET         /api/veiculos/delete/:id        controllers.VeiculoController.delete(id)
+GET         /api/veiculos/getdados/:id        controllers.VeiculoController.getdados(id)
+GET         /api/veiculos/atualizadados/:id        controllers.VeiculoController.atualizadados(id)
+#Eventos do Veiculo
+GET         /api/veiculos/geteventos/:email        controllers.VeiculoController.getEventos(email)
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET         /assets/*file                   controllers.Assets.at(path="/public", file)
 
     
