@@ -14,8 +14,3 @@ GET         /api/veiculos/getdados/:id      controllers.VeiculoController.getdad
 GET         /api/veiculos/atualizadados/:id controllers.VeiculoController.atualizadados(id)
 #Eventos do Veiculo
 GET         /api/veiculos/geteventos/:email controllers.VeiculoController.getEventos(email)
-
-# Map static resources from the /public folder to the /assets URL path
-GET         /assets/*file                   controllers.Assets.at(path="/public", file)
-
-    

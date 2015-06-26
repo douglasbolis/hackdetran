@@ -20,7 +20,7 @@ object UserController extends SecuredController {
 
 
   def login = Action(parse.json) { request =>
-    (request.body ) match {
+    (request.body ).toString.parseJson.convertTo[Login] match {
       case el: Login => {
 
         try{
@@ -46,7 +46,7 @@ object UserController extends SecuredController {
                 Some(el.locale),
                 Some(el.timeZone)
               )
-              val userAuth = new UserAuth(user.head,el.network,el.network_id)
+              val userAuth = new UserAuth(newuser,el.network,el.network_id)
 
             }
           }

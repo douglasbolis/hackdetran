@@ -144,7 +144,7 @@ object VeiculoController extends SecuredController{
   }
 
   def add  = Action(parse.json) { request =>
-    (request.body ) match {
+    (request.body ).toString.parseJson.convertTo[PostVeiculo] match {
       case el: PostVeiculo => {
         val user = UserController.get(el.email)
         transactional{
@@ -180,6 +180,8 @@ object VeiculoController extends SecuredController{
     } else {
       transactional {
         v.foreach(d => {
+          (select[VeiculoEvento] where (_.veiculo :== d)).foreach(e=> e.delete)
+          (select[VeiculoRegistro] where (_.veiculo :== d)).foreach(e=> e.delete)
           d.delete
         })
       }
