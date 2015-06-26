@@ -11,6 +11,7 @@ web/node_modules/loopback-datasource-juggler/.idea/loopback-data.iml
 *.swp
 *.tgz
 *.xml
+!mobile/config.xml
 .DS_Store
 .idea
 .idea/

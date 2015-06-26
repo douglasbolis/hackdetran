@@ -6,5 +6,6 @@ node_modules/
 #\plugins/
 nbproject/
 .idea/
+!www/lib/ng-cordova-master
 www/lib/
 .DS_Store
