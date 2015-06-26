@@ -5,31 +5,42 @@
 
     app
         .factory('pathFactory', function($resource) {
-            return $resource('https://')
+            return {
+                emulta: function (path) {
+                    return $resource(path)
+                }
+            }
         })
 
-        /*.factory('reqUser', ['$scope', 'pathFactory', function($scope, pathFactory) {
-            var dadosUser = [],
-                newCarPromise = pathFactory.save({}, $scope.car).$promise;
+        .factory('reqUser', ['$scope', 'pathFactory', function($scope, pathFactory) {
+            var dadosUser = [];
 
             return {
                 getDadosUsuario: getDadosUsuario
             };
 
-            newCarPromise
-                .then(function (data) {
-                    dadosUser = data;
-                })
-                .catch(function(error) {
-                    console.log(error)
-                });
+            function getDadosUsuario(user) {
+                var  newCarPromise = pathFactory.emulta('/api/user/login').save({
+                    "usuario": user,
+                    "method": "GET",
+                    "headers": {
+                        "X-AUTH-TOKEN": "1234"
+                    }
+                }).$promise;
 
-            function getDadosUsuario() {
-                return dadosUser
+                newCarPromise
+                    .then(function (data) {
+                        return data;
+                    })
+                    .catch(function(error) {
+                        if (error.status == '400') {
+                            return error.err;
+                        }
+                    });
             }
-        }])*/
+        }])
 
-        .factory('DadosVeiculos', [/*'pathFactory',*/ function (/*pathFactory*/) {
+        .factory('DadosVeiculos', ['pathFactory', function (pathFactory) {
             var veiculos = [{placa: '132456', renavan: '4654asfaflh'}],
                 dados = [
                     {
@@ -117,7 +128,6 @@
 
             return {
                 getVeiculos: getVeiculos,
-                setVeiculo: setVeiculo,
                 getDados: getDados
             };
 
@@ -125,24 +135,30 @@
                 return dados
             }
 
-            function getVeiculos() {
-                /*var getVeiculosPromise = pathFactory.query({
+            function getVeiculos(email) {
+                var getVeiculosPromise = pathFactory.emulta('/api/veiculos/get/:email').query({
+                    "email": email,
                     "method": "GET",
                     "headers": {
                         "X-AUTH-TOKEN": "1234"
                     }
-                }).$promise;*/
+                }).$promise;
 
-                return veiculos
-            }
+                getVeiculosPromise
+                    .then(function(data) {
+                        return data
+                    })
+                    .cacth(function(error) {
+                        if (error.status == '400') {
+                            return error.err
+                        }
+                    });
 
-            function setVeiculo(car) {
-                veiculos.push(car)
             }
         }])
 
-        .controller('welcomeCtrl', ['$scope', /*'reqUser',*/ '$state', '$cookieStore', '$location',
-            function ($scope/*, reqUser*/, $state, $cookieStore, $location) {
+        .controller('welcomeCtrl', ['$scope', 'reqUser', '$state', '$cookieStore', '$location',
+            function ($scope, reqUser, $state, $cookieStore, $location) {
 
             /**
              * SOCIAL LOGIN
@@ -164,7 +180,7 @@
                 function getUserInfo() {
                     // get basic info
                     FB.api('/me', function (response) {
-                        console.log('Facebook Login RESPONSE: ' + angular.toJson(response));
+                        console.log('Facebook Login RESPONSE1: ' + angular.toJson(response));
                         // get profile picture
                         FB.api('/me/picture?type=normal', function (picResponse) {
                             console.log('Facebook Login RESPONSE: ' + picResponse.data.url);
@@ -182,7 +198,7 @@
                             }
                             user.profilePic = picResponse.data.url;
                             $cookieStore.put('userInfo', user);
-                            //reqUser.getDadosUsuario();
+                            reqUser.getDadosUsuario(response);
                             $location.path('/dashboard/dash');
                         });
                     });
@@ -226,6 +242,7 @@
                             }
                             user.profilePic = resp.image.url;
                             $cookieStore.put('userInfo', user);
+                            reqUser.getDadosUsuario(resp);
                             $location.path('/dashboard/dash');
                         });
                     }
@@ -280,7 +297,7 @@
                     $scope.car.email = $scope.user.email;
                     DadosVeiculos.setVeiculo($scope.car);
 
-                    /*var sendVeiculo = pathFactory.save({
+                    var sendVeiculo = pathFactory.emulta('/api/veiculos/add').save({
                         "veiculo": $scope.car,
                         "method": "POST",
                         "headers": {
@@ -297,7 +314,7 @@
                             if (error.status == '400') {
                                 $scope.msgErro = error.err;
                             }
-                        });*/
+                        });
 
                     // Simulate a carro delay. Remove this and replace with your carro
                     // code if using a carro system
@@ -318,18 +335,28 @@
             };
         }])
 
-        .controller('veiculosCtrl', ['$scope', /*'pathFactory', */'DadosVeiculos', function ($scope, /*pathFactory,*/ DadosVeiculos) {
+        .controller('veiculosCtrl', ['$scope', 'pathFactory', 'DadosVeiculos', function ($scope, pathFactory, DadosVeiculos) {
             $scope.carros = DadosVeiculos.getVeiculos();
 
-            /*$scope.excluiVeiculo = function(id) {
-                var sendExclusaoPromise = pathFactory.query({
-                    "veiculo": $scope.car,
+            $scope.excluiVeiculo = function(id) {
+                var sendExclusaoPromise = pathFactory.emulta('/api/veiculos/delete/:id').query({
+                    "id": $scope.car.id,
                     "method": "DELETE",
                     "headers": {
                         "X-AUTH-TOKEN": "1234"
                     }
-                })
-            };*/
+                }).$promise;
+
+                sendExclusaoPromise
+                    .then(function(data) {
+                        $scope.msg.successExcluir = 'Veículo excluído com sucesso';
+                    })
+                    .catch(function(error) {
+                        if (error.status == '400') {
+                            $scope.msg.errorExcluir = 'Erro ao excluir veículo';
+                        }
+                    })
+            };
 
         }])
 
