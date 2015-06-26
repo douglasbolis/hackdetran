@@ -62,7 +62,7 @@ object xBuild extends Build {
     id = "integrator",
     base = file("integrator"),
     settings = commonSettings ++ Seq(
-      libraryDependencies ++= Seq(scalaj,htmlcleaner,scalaxml,jodaTime))
+      libraryDependencies ++= Seq(scalaj,htmlcleaner,scalaxml,jodaTime,sprayJson))
   )
 
 
@@ -74,7 +74,7 @@ object xBuild extends Build {
     aggregate = Seq(integrator),
     dependencies = Seq(integrator),
     settings = commonSettings ++ Seq(
-    libraryDependencies ++= Seq( jdbc , anorm , cache , ws, activate , activatePlay, activateSlick, activateSprayJson, h2Database ,sprayJson))
+    libraryDependencies ++= Seq( jdbc , anorm , cache, filters , ws, activate , activatePlay, activateSlick, activateSprayJson, h2Database ,sprayJson))
   ) enablePlugins PlayScala
 
 
