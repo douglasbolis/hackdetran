@@ -7,64 +7,13 @@ import models.CrawlerDetranContext._
 import models.entities.{VeiculoEvento, VeiculoRegistro, Veiculo, User}
 import play.api.mvc.Action
 import spray.json._
+import br.com.xdevel.crawlerdetran.model.CrawlerJsonProtocol._
+import models.MainJsonProtocol._
 
 /**
  * Created by clayton on 26/06/15.
  */
 object VeiculoController extends SecuredController{
-
-  case class PostVeiculo(email: String, placa: String, renavam: String , id: String)
-
-  case class PostVeiculoEvento (placa: String, title: String , description: String , iddescription : String, isRead: Boolean)
-
-  implicit object TPostVeiculoJsonFormat extends RootJsonFormat[PostVeiculo] {
-    def write(c: PostVeiculo) = JsObject(
-      "email" -> JsString(c.email),
-      "placa" -> JsString(c.placa),
-      "renavam" -> JsString(c.renavam),
-      "id" -> JsString(c.id)
-    )
-    def read(value: JsValue) = {
-      value.asJsObject.getFields("email", "placa", "renavam","id") match {
-        case Seq(
-        JsString(email),
-        JsString(placa),
-        JsString(renavam),
-        JsString(id)
-        ) =>
-          new PostVeiculo(email, placa, renavam, id)
-        case _ => throw new DeserializationException("Veiculo expected")
-      }
-    }
-  }
-
-
-
-
-
-  implicit object TPostVeiculoEventoJsonFormat extends RootJsonFormat[PostVeiculoEvento] {
-    def write(c: PostVeiculoEvento) = JsObject(
-      "placa" -> JsString(c.placa),
-      "title" -> JsString(c.title),
-      "description" -> JsString(c.description),
-      "iddescription" -> JsString(c.iddescription),
-      "isRead" -> JsBoolean(c.isRead)
-    )
-    def read(value: JsValue) = {
-      value.asJsObject.getFields("placa", "title", "description","iddescription", "isRead") match {
-        case Seq(
-        JsString(placa),
-        JsString(title),
-        JsString(description),
-        JsString(iddescription),
-        JsBoolean(isRead)
-        ) =>
-          new PostVeiculoEvento(placa, title, description, iddescription, isRead)
-        case _ => throw new DeserializationException("Veiculo expected")
-      }
-    }
-  }
-
 
 
 
@@ -73,7 +22,7 @@ object VeiculoController extends SecuredController{
         val veiculo = select[Veiculo] where(_.id :== id)
 
         if(veiculo.isEmpty){
-          BadRequest(JsObject("err" -> JsString("Veículo não encontrado")))
+          BadRequest(JsObject("err" -> JsString("Veículo não encontrado")).prettyPrint)
         }else{
           val registros = (select[VeiculoRegistro] where (_.veiculo :== veiculo))
 
@@ -82,9 +31,9 @@ object VeiculoController extends SecuredController{
           }else{
 
             val reg = registros.head
-            val regcap03 : JsValue = if (reg.reg03.isDefined) {reg.reg03.get.parseJson} else {List().toJson}
-            val regcap04 : JsValue = if (reg.reg03.isDefined) {reg.reg04.get.parseJson} else {List().toJson}
-            val regcap10 : JsValue = if (reg.reg03.isDefined) {reg.reg10.get.parseJson} else {List().toJson}
+            val regcap03 : JsValue = if (reg.reg03.isDefined) {reg.reg03.get.parseJson} else {JsArray()}
+            val regcap04 : JsValue = if (reg.reg03.isDefined) {reg.reg04.get.parseJson} else {JsArray()}
+            val regcap10 : JsValue = if (reg.reg03.isDefined) {reg.reg10.get.parseJson} else {JsArray()}
 
             val json: spray.json.JsValue =
               JsObject(
@@ -94,7 +43,7 @@ object VeiculoController extends SecuredController{
                 "cap10" -> regcap10
               )
 
-            Ok(json)
+            Ok(json.prettyPrint)
 
           }
 
@@ -111,7 +60,7 @@ object VeiculoController extends SecuredController{
       val veiculo = select[Veiculo] where(_.id :== id)
 
       if(veiculo.isEmpty){
-        BadRequest(JsObject("err" -> JsString("Veículo não encontrado")))
+        BadRequest(JsObject("err" -> JsString("Veículo não encontrado")).prettyPrint)
       }else{
         _registraVeiculo(veiculo.head,true)
         Ok
@@ -136,15 +85,15 @@ object VeiculoController extends SecuredController{
           val veiculos = select[Veiculo]
             .where(v => v.user :== user.head)
 
-          Ok(veiculos.map(d=> new PostVeiculo(d.user.email,d.placa,d.renavam,d.id)).toJson.prettyPrint)
+          Ok(JsArray(veiculos.map(d=> new PostVeiculo(d.user.email,d.placa,d.renavam,d.id).toJson).toVector).prettyPrint)
 
         }else{
-          Ok(List().toJson.prettyPrint)
+          Ok(JsArray().prettyPrint)
         }
       }
 
     }catch {
-      case e : Exception =>  BadRequest(JsObject( "err" ->  JsString(e.getMessage)))
+      case e : Exception =>  BadRequest(JsObject( "err" ->  JsString(e.getMessage)).prettyPrint)
     }
 
 
@@ -178,24 +127,24 @@ object VeiculoController extends SecuredController{
           val veiculos = select[Veiculo]
             .where(v => v.user :== user.head)
 
-          val eventos =  veiculos.map(d=>{getEventos(d,eventos)})
+          def eventos : List[PostVeiculoEvento] =  veiculos.flatMap(d=>{getEventos(d,eventos)})
 
-          Ok(eventos.toJson.prettyPrint)
+          Ok(JsArray(eventos.map(d=>d.toJson).toVector).prettyPrint)
 
         }else{
-          Ok(List().toJson.prettyPrint)
+          Ok(JsArray().prettyPrint)
         }
       }
 
     }catch {
-      case e : Exception =>  BadRequest(JsObject( "err" ->  JsString(e.getMessage)))
+      case e : Exception =>  BadRequest(JsObject( "err" ->  JsString(e.getMessage)).prettyPrint)
     }
 
 
   }
 
   def add  = Action(parse.json) { request =>
-    (request.body ).as[PostVeiculo] match {
+    (request.body ) match {
       case el: PostVeiculo => {
         val user = UserController.get(el.email)
         transactional{
@@ -208,12 +157,12 @@ object VeiculoController extends SecuredController{
             _registraVeiculo(newveiculo,false)
             Ok
           }else{
-            BadRequest(JsObject( "err" ->  JsString("Veículo Existente")))
+            BadRequest(JsObject( "err" ->  JsString("Veículo Existente")).prettyPrint)
           }
         }
 
       }
-      case _ => BadRequest(JsObject( "err" ->  JsString("Invalid format for PostVeiculo")))
+      case _ => BadRequest(JsObject( "err" ->  JsString("Invalid format for PostVeiculo")).prettyPrint)
     }
 
   }
@@ -227,7 +176,7 @@ object VeiculoController extends SecuredController{
     val v = getbyId(id)
 
     if (v.isEmpty) {
-      BadRequest(JsObject("err" -> JsString("Veiculo não encontrado")))
+      BadRequest(JsObject("err" -> JsString("Veiculo não encontrado")).prettyPrint)
     } else {
       transactional {
         v.foreach(d => {
@@ -255,7 +204,7 @@ object VeiculoController extends SecuredController{
       if (atualiza) {
         _checaAtualizacoes(veiculo, model).foreach(d => {
           // adiciona novos eventos para serem notificados via push
-          new VeiculoEvento(d.title, d.description, d.iddescription, false)
+          new VeiculoEvento(veiculo, d.title, d.description, d.iddescription, false)
         })
         (select[VeiculoRegistro] where (_.veiculo :== veiculo)).foreach(d => {
           d.delete
@@ -265,9 +214,9 @@ object VeiculoController extends SecuredController{
       new VeiculoRegistro(
         veiculo,
         model.tbServico02.toJson.prettyPrint,
-        Some(model.tbServico03.toJson.prettyPrint),
-        Some(model.tbServico04.toJson.prettyPrint),
-        Some(model.tbServico10.toJson.prettyPrint)
+        Some(JsArray(model.tbServico03.map(d=>d.toJson).toVector).prettyPrint),
+        Some(JsArray(model.tbServico04.map(d=>d.toJson).toVector).prettyPrint),
+        Some(JsArray(model.tbServico10.map(d=>d.toJson).toVector).prettyPrint)
       )
     }
 
