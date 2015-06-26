@@ -1,0 +1,11 @@
+<ion-view view-title="Veículo">
+    <ion-content>
+        <ion-list>
+            <ion-item ng-repeat="dado in dados">
+                <div>
+                    <span class="item-input">{{dado.label + ': ' + dado.value}}</span>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

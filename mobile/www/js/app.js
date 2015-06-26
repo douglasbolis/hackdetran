@@ -25,7 +25,7 @@ app.run(function ($rootScope, $cookieStore, $state, $ionicPlatform) {
             }
         } else if (next.name === "welcome") {
             event.preventDefault();
-            $state.go('dashboard');
+            $state.go('dashboard.veiculos');
         }
     });
 });
@@ -49,15 +49,24 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 templateUrl: "partials/newCar.html",
                 controller: "dashboardCtrl"
             })
-            .state('dashboard.index', {
-                url: "/index",
+            .state('dashboard.veiculos', {
+                url: "/veiculos",
                 views: {
                     'menuContent': {
-                        templateUrl: "partials/index.html",
-                        controller: 'indexCtrl'
+                        templateUrl: "partials/veiculos.html",
+                        controller: 'veiculosCtrl'
                     }
                 }
-            });
+            })
+        .state('dashboard.veiculo', {
+            url: "/veiculos/:veiculoId",
+            views: {
+                'menuContent': {
+                    templateUrl: "partials/veiculo.html",
+                    controller: 'veiculoCtrl'
+                }
+            }
+        });
     // default route
     $urlRouterProvider.otherwise("/welcome");
 
