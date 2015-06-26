@@ -42,8 +42,6 @@ class Crawler(placa : String ,renavam : String) {
   )
 
 
-  //celnlef8
-
 
   // debitos
   val fieldsdiv03 = getFieldsdiv03(filterTable03("div_servicos_03",hresp.toList))

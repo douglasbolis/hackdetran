@@ -44,7 +44,8 @@ class VeiculoRegistro (
                       ) extends Entity
 
 
-class VeiculoEvento ( var title: String ,
+class VeiculoEvento ( var veiculo: Veiculo,
+                      var title: String ,
                       var description: String ,
                       var iddescription : String,
                       var isRead: Boolean) extends Entity
