@@ -1,0 +1,13 @@
+<ion-view view-title="Meus Veículos">
+    <ion-content>
+        <ion-list>
+            <ion-item ng-repeat="carro in carros">
+                <div class="">
+                    <label>Placa: {{carro.placa}}</label><br>
+                    <label>Renavan: {{carro.renavan}}</label>
+                    <a href="#/dashboard/veiculos/{{carro.placa}}"><span>+</span></a>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

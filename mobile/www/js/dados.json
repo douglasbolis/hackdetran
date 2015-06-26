@@ -1,0 +1,371 @@
+{
+  "cap02": [
+    {
+    "label": "Placa",
+    "value": "OCZ8775"
+  }, {
+    "label": "Renavam",
+    "value": "00345508807"
+  }, {
+    "label": "Placa Anterior",
+    "value": "OCZ8775/ES"
+  }, {
+    "label": "Tipo",
+    "value": "6-AUTOMOVEL"
+  }, {
+    "label": "Categoria",
+    "value": "1-Particular"
+  }, {
+    "label": "Espécie",
+    "value": "1-Passageiro"
+  }, {
+    "label": "Lugares",
+    "value": "5"
+  }, {
+    "label": "Marca/Modelo",
+    "value": "159923-FORD/FIESTA FLEX         (Nacional)"
+  }, {
+    "label": "Fabricação/Modelo",
+    "value": "2011/2012"
+  }, {
+    "label": "Potência",
+    "value": "73"
+  }, {
+    "label": "Combustível",
+    "value": "16-Alcool-Gasol"
+  }, {
+    "label": "Cor",
+    "value": "11-PRETA"
+  }, {
+    "label": "Carroceria",
+    "value": "999-NAO APLICAVEL"
+  }, {
+    "label": "Nome do Proprietário",
+    "value": "CLAYTON SANTOS DA SILVA"
+  }, {
+    "label": "Recadastrado DETRAN",
+    "value": "DetranNet"
+  }, {
+    "label": "Proprietário Anterior",
+    "value": "CONTAUTO CONTINENTE AUTOMOVEIS LTDA"
+  }, {
+    "label": "Origem dos Dados do Veículo",
+    "value": "CADASTRO"
+  }, {
+    "label": "Município de Emplacamento",
+    "value": "VITORIA"
+  }, {
+    "label": "Licenciado até",
+    "value": "2011 em 05/09/2011 através do Registro de Veículo (CRV)(Via 1)"
+  }, {
+    "label": "Adquirido em",
+    "value": "30/08/2011"
+  }, {
+    "label": "Situação",
+    "value": "Em Circulação"
+  }, {
+    "label": "Restrição à Venda",
+    "value": "Alienação Fiduciária em favor de BANCO ITAUCARD SA"
+  }, {
+    "label": "Informações do Contrato e/ou Aditivo",
+    "value": "Sem dados do contrato e/ou aditivo"
+  }, {
+    "label": "Informações PENDENTES originadas das financeiras via SNG - Sistema Nacional de Gravame",
+    "value": "Registro de Baixa de Alienação Fiduciária informado por BANCO ITAUCARD SA                        em 19/03/2015 às 16h32min para CLAYTON SANTOS DA SILVA"
+  }, {
+    "label": "Indicativo de Clonagem (informação de responsabilidade do proprietário)",
+    "value": "Não"
+  }, {
+    "label": "Impedimentos",
+    "value": "RENAJUD"
+  }, {
+    "label": "Averbação judicial",
+    "value": "Não"
+  }],
+  "cap03": [
+    {
+    "valorAtual": 16.12,
+    "valorDesconto": 0.00,
+    "signature": "Postagem do CRLV 2015",
+    "valorMulta": 0.00,
+    "numAuto": "Postagem do CRLV 2015",
+    "valorJuros": 0.00,
+    "valorCorrigido": 16.12,
+    "valorNominal": 16.12,
+    "vencimento": "2015-09-22T00:00:00.000-03:00"
+  }, {
+    "valorAtual": 128.98,
+    "valorDesconto": 0.00,
+    "signature": "Licenciamento Anual 2015",
+    "valorMulta": 0.00,
+    "numAuto": "Licenciamento Anual 2015",
+    "valorJuros": 0.00,
+    "valorCorrigido": 128.98,
+    "valorNominal": 128.98,
+    "vencimento": "2015-09-22T00:00:00.000-03:00"
+  }, {
+    "valorAtual": 68.10,
+    "valorDesconto": 17.02,
+    "signature": "DER-108200-LV28926195-7455/00",
+    "valorMulta": 0.00,
+    "numAuto": "DER-108200-LV28926195-7455/00",
+    "valorJuros": 17.02,
+    "valorCorrigido": 85.12,
+    "valorNominal": 85.12,
+    "vencimento": "2015-07-03T00:00:00.000-03:00"
+  }, {
+    "valorAtual": 102.15,
+    "valorDesconto": 25.54,
+    "signature": "DER-108200-RV00043332-7463/00",
+    "valorMulta": 0.00,
+    "numAuto": "DER-108200-RV00043332-7463/00",
+    "valorJuros": 25.54,
+    "valorCorrigido": 127.69,
+    "valorNominal": 127.69,
+    "vencimento": "2015-07-01T00:00:00.000-03:00"
+  }, {
+    "valorAtual": 68.10,
+    "valorDesconto": 17.02,
+    "signature": "DER-108200-RV00042922-7455/00",
+    "valorMulta": 0.00,
+    "numAuto": "DER-108200-RV00042922-7455/00",
+    "valorJuros": 17.02,
+    "valorCorrigido": 85.12,
+    "valorNominal": 85.12,
+    "vencimento": "2015-07-01T00:00:00.000-03:00"
+  }, {
+    "valorAtual": 102.15,
+    "valorDesconto": 25.54,
+    "signature": "DER-108200-RV00012912-7463/00",
+    "valorMulta": 0.00,
+    "numAuto": "DER-108200-RV00012912-7463/00",
+    "valorJuros": 25.54,
+    "valorCorrigido": 127.69,
+    "valorNominal": 127.69,
+    "vencimento": "2015-06-30T00:00:00.000-03:00"
+  }, {
+    "valorAtual": 247.89,
+    "valorDesconto": 0.00,
+    "signature": "IPVA 2ª Cota 2015",
+    "valorMulta": 25.21,
+    "numAuto": "IPVA 2ª Cota 2015",
+    "valorJuros": 0.00,
+    "valorCorrigido": 218.31,
+    "valorNominal": 218.31,
+    "vencimento": "2015-05-21T00:00:00.000-03:00"
+  }, {
+    "valorAtual": 85.13,
+    "valorDesconto": 0.00,
+    "signature": "DNIT-000300-G000404147-7455/00",
+    "valorMulta": 0.00,
+    "numAuto": "DNIT-000300-G000404147-7455/00",
+    "valorJuros": 0.00,
+    "valorCorrigido": 85.13,
+    "valorNominal": 85.13,
+    "vencimento": "2015-02-09T00:00:00.000-02:00"
+  }, {
+    "valorAtual": 16.12,
+    "valorDesconto": 0.00,
+    "signature": "Postagem do CRLV 2014",
+    "valorMulta": 0.00,
+    "numAuto": "Postagem do CRLV 2014",
+    "valorJuros": 0.00,
+    "valorCorrigido": 16.12,
+    "valorNominal": 15.13,
+    "vencimento": "2014-09-22T00:00:00.000-03:00"
+  }, {
+    "valorAtual": 128.98,
+    "valorDesconto": 0.00,
+    "signature": "Licenciamento Anual 2014",
+    "valorMulta": 0.00,
+    "numAuto": "Licenciamento Anual 2014",
+    "valorJuros": 0.00,
+    "valorCorrigido": 128.98,
+    "valorNominal": 121.01,
+    "vencimento": "2014-09-22T00:00:00.000-03:00"
+  }, {
+    "valorAtual": 128.98,
+    "valorDesconto": 0.00,
+    "signature": "Licenciamento Anual 2013",
+    "valorMulta": 0.00,
+    "numAuto": "Licenciamento Anual 2013",
+    "valorJuros": 0.00,
+    "valorCorrigido": 128.98,
+    "valorNominal": 114.34,
+    "vencimento": "2013-09-20T00:00:00.000-03:00"
+  }, {
+    "valorAtual": 85.12,
+    "valorDesconto": 0.00,
+    "signature": "DER-108200-LV28808107-7455/00",
+    "valorMulta": 0.00,
+    "numAuto": "DER-108200-LV28808107-7455/00",
+    "valorJuros": 0.00,
+    "valorCorrigido": 85.12,
+    "valorNominal": 85.12,
+    "vencimento": "2013-01-24T00:00:00.000-02:00"
+  }, {
+    "valorAtual": 128.98,
+    "valorDesconto": 0.00,
+    "signature": "Licenciamento Anual 2012",
+    "valorMulta": 0.00,
+    "numAuto": "Licenciamento Anual 2012",
+    "valorJuros": 0.00,
+    "valorCorrigido": 128.98,
+    "valorNominal": 63.25,
+    "vencimento": "2012-09-24T00:00:00.000-03:00"
+  }, {
+    "valorAtual": 85.12,
+    "valorDesconto": 0.00,
+    "signature": "DER-108200-LV28717271-7455/00",
+    "valorMulta": 0.00,
+    "numAuto": "DER-108200-LV28717271-7455/00",
+    "valorJuros": 0.00,
+    "valorCorrigido": 85.12,
+    "valorNominal": 85.12,
+    "vencimento": "2012-07-16T00:00:00.000-03:00"
+  }, {
+    "valorAtual": 85.12,
+    "valorDesconto": 0.00,
+    "signature": "DER-108200-LV28704376-7455/00",
+    "valorMulta": 0.00,
+    "numAuto": "DER-108200-LV28704376-7455/00",
+    "valorJuros": 0.00,
+    "valorCorrigido": 85.12,
+    "valorNominal": 85.12,
+    "vencimento": "2012-06-28T00:00:00.000-03:00"
+  }, {
+    "valorAtual": 85.12,
+    "valorDesconto": 0.00,
+    "signature": "DER-108200-LV28694446-7455/00",
+    "valorMulta": 0.00,
+    "numAuto": "DER-108200-LV28694446-7455/00",
+    "valorJuros": 0.00,
+    "valorCorrigido": 85.12,
+    "valorNominal": 85.12,
+    "vencimento": "2012-06-18T00:00:00.000-03:00"
+  }, {
+    "valorAtual": 127.69,
+    "valorDesconto": 0.00,
+    "signature": "DER-108200-LV28677536-7463/00",
+    "valorMulta": 0.00,
+    "numAuto": "DER-108200-LV28677536-7463/00",
+    "valorJuros": 0.00,
+    "valorCorrigido": 127.69,
+    "valorNominal": 127.69,
+    "vencimento": "2012-05-07T00:00:00.000-03:00"
+  }, {
+    "valorAtual": 85.12,
+    "valorDesconto": 0.00,
+    "signature": "DER-108200-LV28666077-7455/00",
+    "valorMulta": 0.00,
+    "numAuto": "DER-108200-LV28666077-7455/00",
+    "valorJuros": 0.00,
+    "valorCorrigido": 85.12,
+    "valorNominal": 85.12,
+    "vencimento": "2012-04-26T00:00:00.000-03:00"
+  }],
+  "cap04": [{
+    "localComplemento": "Em VILA VELHA no dia 31/12/2011 às 03h56min",
+    "situacao": "Em aberto",
+    "descricao": "TRANSITAR VELOC SUP MAX PERMITIDA EM ATE 20%",
+    "signature": "DER-108200-LV28666077-7455/00Em aberto",
+    "numAuto": "DER-108200-LV28666077-7455/00"
+  }, {
+    "localComplemento": "Em VITORIA no dia 20/01/2012 às 00h03min",
+    "situacao": "Em aberto",
+    "descricao": "TRANSITAR VELOC SUP MAX PERMITIDA EM MAIS DE 20% ATE 50%",
+    "signature": "DER-108200-LV28677536-7463/00Em aberto",
+    "numAuto": "DER-108200-LV28677536-7463/00"
+  }, {
+    "localComplemento": "Em VILA VELHA no dia 18/02/2012 às 07h38min",
+    "situacao": "Em aberto",
+    "descricao": "TRANSITAR VELOC SUP MAX PERMITIDA EM ATE 20%",
+    "signature": "DER-108200-LV28694446-7455/00Em aberto",
+    "numAuto": "DER-108200-LV28694446-7455/00"
+  }, {
+    "localComplemento": "Em VILA VELHA no dia 04/03/2012 às 15h40min",
+    "situacao": "Em aberto",
+    "descricao": "TRANSITAR VELOC SUP MAX PERMITIDA EM ATE 20%",
+    "signature": "DER-108200-LV28704376-7455/00Em aberto",
+    "numAuto": "DER-108200-LV28704376-7455/00"
+  }, {
+    "localComplemento": "Em SERRA no dia 31/03/2012 às 09h37min",
+    "situacao": "Em aberto",
+    "descricao": "TRANSITAR VELOC SUP MAX PERMITIDA EM ATE 20%",
+    "signature": "DER-108200-LV28717271-7455/00Em aberto",
+    "numAuto": "DER-108200-LV28717271-7455/00"
+  }, {
+    "localComplemento": "TRANSITAR VELOC SUP MAX PERMITIDA EM ATE 20%",
+    "situacao": "Em aberto",
+    "descricao": "Renainf: 1782249206",
+    "signature": "DNIT-000300-G000404147-7455/00Em aberto",
+    "numAuto": "DNIT-000300-G000404147-7455/00"
+  }, {
+    "localComplemento": "Em VITORIA no dia 07/10/2012 às 12h27min",
+    "situacao": "Em aberto",
+    "descricao": "TRANSITAR VELOC SUP MAX PERMITIDA EM ATE 20%",
+    "signature": "DER-108200-LV28808107-7455/00Em aberto",
+    "numAuto": "DER-108200-LV28808107-7455/00"
+  }, {
+    "localComplemento": "Em VITORIA no dia 28/06/2013 às 00h10min",
+    "situacao": "Em aberto",
+    "descricao": "TRANSITAR VELOC SUP MAX PERMITIDA EM ATE 20%",
+    "signature": "DER-108200-LV28926195-7455/00Em aberto",
+    "numAuto": "DER-108200-LV28926195-7455/00"
+  }, {
+    "localComplemento": "Em SERRA no dia 03/10/2014 às 16h50min",
+    "situacao": "Em aberto",
+    "descricao": "TRANSITAR VELOC SUP MAX PERMITIDA EM MAIS DE 20% ATE 50%",
+    "signature": "DER-108200-RV00012912-7463/00Em aberto",
+    "numAuto": "DER-108200-RV00012912-7463/00"
+  }, {
+    "localComplemento": "Em SERRA no dia 08/01/2015 às 18h23min",
+    "situacao": "Em aberto",
+    "descricao": "TRANSITAR VELOC SUP MAX PERMITIDA EM ATE 20%",
+    "signature": "DER-108200-RV00042922-7455/00Em aberto",
+    "numAuto": "DER-108200-RV00042922-7455/00"
+  }, {
+    "localComplemento": "Em SERRA no dia 11/01/2015 às 14h56min",
+    "situacao": "Em aberto",
+    "descricao": "TRANSITAR VELOC SUP MAX PERMITIDA EM MAIS DE 20% ATE 50%",
+    "signature": "DER-108200-RV00043332-7463/00Em aberto",
+    "numAuto": "DER-108200-RV00043332-7463/00"
+  }],
+  "cap10": [{
+    "localComplemento": "TRANSITAR VELOC SUP MAX PERMITIDA EM ATE 20%",
+    "situacao": "Em aberto",
+    "descricao": "Renainf: 2065667770",
+    "signature": "DNIT-000300-G002691065-7455/00Em aberto",
+    "numAuto": "DNIT-000300-G002691065-7455/00"
+  }, {
+    "localComplemento": "Em SERRA no dia 04/01/2015 às 18h15min",
+    "situacao": "Em aberto",
+    "descricao": "TRANSITAR VELOC SUP MAX PERMITIDA EM ATE 20%",
+    "signature": "DER-108200-RV00041475-7455/00Em aberto",
+    "numAuto": "DER-108200-RV00041475-7455/00"
+  }, {
+    "localComplemento": "Em SERRA no dia 10/04/2015 às 16h28min",
+    "situacao": "Em aberto",
+    "descricao": "TRANSITAR VELOC SUP MAX PERMITIDA EM ATE 20%",
+    "signature": "DER-108200-RV00104685-7455/00Em aberto",
+    "numAuto": "DER-108200-RV00104685-7455/00"
+  }, {
+    "localComplemento": "Em SERRA no dia 14/04/2015 às 14h20min",
+    "situacao": "Em aberto",
+    "descricao": "TRANSITAR VELOC SUP MAX PERMITIDA EM ATE 20%",
+    "signature": "DER-108200-RV00107562-7455/00Em aberto",
+    "numAuto": "DER-108200-RV00107562-7455/00"
+  }, {
+    "localComplemento": "Em SERRA no dia 26/04/2015 às 23h33min",
+    "situacao": "Em aberto",
+    "descricao": "TRANSITAR VELOC SUP MAX PERMITIDA EM MAIS DE 20% ATE 50%",
+    "signature": "DER-108200-RV00115912-7463/00Em aberto",
+    "numAuto": "DER-108200-RV00115912-7463/00"
+  }, {
+    "localComplemento": "Em SERRA no dia 23/05/2015 às 01h39min",
+    "situacao": "Em aberto",
+    "descricao": "TRANSITAR VELOC SUP MAX PERMITIDA EM ATE 20%",
+    "signature": "DER-108200-RV00129726-7455/00Em aberto",
+    "numAuto": "DER-108200-RV00129726-7455/00"
+  }]
+}

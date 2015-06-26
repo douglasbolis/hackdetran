@@ -58,15 +58,24 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                     }
                 }
             })
-            .state('dashboard.index', {
-                url: "/index",
+            .state('dashboard.veiculos', {
+                url: "/veiculos",
                 views: {
                     'menuContent': {
-                        templateUrl: "partials/index.html",
-                        controller: 'indexCtrl'
+                        templateUrl: "partials/veiculos.html",
+                        controller: 'veiculosCtrl'
                     }
                 }
-            });
+            })
+        .state('dashboard.veiculo', {
+            url: "/veiculos/:veiculoId",
+            views: {
+                'menuContent': {
+                    templateUrl: "partials/veiculo.html",
+                    controller: 'veiculoCtrl'
+                }
+            }
+        });
     // default route
     $urlRouterProvider.otherwise("/welcome");
 
