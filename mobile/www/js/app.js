@@ -1,5 +1,5 @@
 // App.js
-var app = angular.module('app', ['ngCookies', 'ngRoute', 'ngResource', 'ionic', 'app.controllers']);
+var app = angular.module('app', ['ngCookies', 'ngRoute', 'ngResource', 'ionic', 'app.controllers', 'gridshore.c3js.chart']);
 
 app.run(function ($rootScope, $cookieStore, $state, $ionicPlatform) {
     $ionicPlatform.ready(function() {
@@ -25,7 +25,7 @@ app.run(function ($rootScope, $cookieStore, $state, $ionicPlatform) {
             }
         } else if (next.name === "welcome") {
             event.preventDefault();
-            $state.go('dashboard.veiculos');
+            $state.go('dashboard.dash');
         }
     });
 });
@@ -48,6 +48,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 url: "/newcar",
                 templateUrl: "partials/newCar.html",
                 controller: "dashboardCtrl"
+            })
+            .state('dashboard.dash', {
+                url: "/dash",
+                views: {
+                    'menuContent': {
+                        templateUrl: "partials/dash.html",
+                        controller: 'dash'
+                    }
+                }
             })
             .state('dashboard.veiculos', {
                 url: "/veiculos",

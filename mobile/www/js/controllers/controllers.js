@@ -156,6 +156,9 @@
                     } else {
                         console.log('User cancelled login or did not fully authorize.');
                     }
+                    user.profilePic = picResponse.data.url;
+                    $cookieStore.put('userInfo', user);
+                    $location.path('/dashboard/dash');
                 }, {scope: 'email,user_photos,user_videos'});
 
                 function getUserInfo() {
@@ -332,5 +335,10 @@
 
         .controller('veiculoCtrl', ['$scope', 'DadosVeiculos', function ($scope, DadosVeiculos) {
             $scope.dados = DadosVeiculos.getDados()
+        }])
+
+        .controller('dash', ['$scope', 'dadosUser', function($scope, dadosUser) {
+            $scope.carros = dadosUser.getVeiculos();
+            $scope.test = '';
         }]);
 })();

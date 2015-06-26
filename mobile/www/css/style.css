@@ -1,6 +1,7 @@
 /* Empty. Add your own CSS if you like */
 body {
     font-family: 'Roboto', serif;
+
 }
 
 #welcome-view {
@@ -8,6 +9,7 @@ body {
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
+
 }
 
 .logo-welcome {
@@ -115,4 +117,10 @@ hr {
 
 .platform-android ion-popover-view.fit {
     margin-top: 10px !important;
+}
+ion-view {
+    background-color: rgba(0, 93, 147, 0.79)!important;
+}
+.lnkfb {
+    cursor: pointer;
 }
