@@ -5,10 +5,10 @@
 
     app
         .factory('pathFactory', function($resource) {
-            return $resource('www.alguma...')
+            return $resource('https://')
         })
 
-        .factory('reqUser', ['$scope', 'pathFactory', function($scope, pathFactory) {
+        /*.factory('reqUser', ['$scope', 'pathFactory', function($scope, pathFactory) {
             var dadosUser = [],
                 newCarPromise = pathFactory.save({}, $scope.car).$promise;
 
@@ -27,9 +27,9 @@
             function getDadosUsuario() {
                 return dadosUser
             }
-        }])
+        }])*/
 
-        .factory('DadosVeiculos', ['pathFactory', function (pathFactory) {
+        .factory('DadosVeiculos', [/*'pathFactory',*/ function (/*pathFactory*/) {
             var veiculos = [{placa: '132456', renavan: '4654asfaflh'}],
                 dados = [
                     {
@@ -126,12 +126,12 @@
             }
 
             function getVeiculos() {
-                var getVeiculosPromise = pathFactory.query({
+                /*var getVeiculosPromise = pathFactory.query({
                     "method": "GET",
                     "headers": {
                         "X-AUTH-TOKEN": "1234"
                     }
-                }).$promise;
+                }).$promise;*/
 
                 return veiculos
             }
@@ -141,8 +141,8 @@
             }
         }])
 
-        .controller('welcomeCtrl', ['$scope', 'reqUser', '$state', '$cookieStore', '$location',
-            function ($scope, reqUser, $state, $cookieStore, $location) {
+        .controller('welcomeCtrl', ['$scope', /*'reqUser',*/ '$state', '$cookieStore', '$location',
+            function ($scope/*, reqUser*/, $state, $cookieStore, $location) {
 
             /**
              * SOCIAL LOGIN
@@ -182,8 +182,8 @@
                             }
                             user.profilePic = picResponse.data.url;
                             $cookieStore.put('userInfo', user);
-                            reqUser.getDadosUsuario();
-                            $location.path('/dashboard/veiculos');
+                            //reqUser.getDadosUsuario();
+                            $location.path('/dashboard/dash');
                         });
                     });
                 }
@@ -226,7 +226,7 @@
                             }
                             user.profilePic = resp.image.url;
                             $cookieStore.put('userInfo', user);
-                            $location.path('/dashboard/veiculos');
+                            $location.path('/dashboard/dash');
                         });
                     }
                 }
@@ -237,8 +237,8 @@
 
 // Dashboard/Profile Controller
     app.controller('dashboardCtrl', [
-        '$scope', 'pathFactory', 'DadosVeiculos', '$resource', '$window', '$state', '$cookieStore', '$ionicModal', '$timeout', '$ionicSideMenuDelegate',
-        function ($scope, pathFactory, DadosVeiculos, $resource, $window, $state, $cookieStore, $ionicModal, $timeout, $ionicSideMenuDelegate) {
+        '$scope', /*'pathFactory',*/ 'DadosVeiculos', '$resource', '$window', '$state', '$cookieStore', '$ionicModal', '$timeout', '$ionicSideMenuDelegate',
+        function ($scope, /*pathFactory, */DadosVeiculos, $resource, $window, $state, $cookieStore, $ionicModal, $timeout, $ionicSideMenuDelegate) {
             // Set user details
             $scope.user = $cookieStore.get('userInfo');
 
@@ -280,7 +280,7 @@
                     $scope.car.email = $scope.user.email;
                     DadosVeiculos.setVeiculo($scope.car);
 
-                    var sendVeiculo = pathFactory.save({
+                    /*var sendVeiculo = pathFactory.save({
                         "veiculo": $scope.car,
                         "method": "POST",
                         "headers": {
@@ -297,7 +297,7 @@
                             if (error.status == '400') {
                                 $scope.msgErro = error.err;
                             }
-                        });
+                        });*/
 
                     // Simulate a carro delay. Remove this and replace with your carro
                     // code if using a carro system
@@ -318,10 +318,10 @@
             };
         }])
 
-        .controller('veiculosCtrl', ['$scope', 'pathFactory', 'DadosVeiculos', function ($scope, pathFactory, DadosVeiculos) {
+        .controller('veiculosCtrl', ['$scope', /*'pathFactory', */'DadosVeiculos', function ($scope, /*pathFactory,*/ DadosVeiculos) {
             $scope.carros = DadosVeiculos.getVeiculos();
 
-            $scope.excluiVeiculo = function(id) {
+            /*$scope.excluiVeiculo = function(id) {
                 var sendExclusaoPromise = pathFactory.query({
                     "veiculo": $scope.car,
                     "method": "DELETE",
@@ -329,7 +329,7 @@
                         "X-AUTH-TOKEN": "1234"
                     }
                 })
-            };
+            };*/
 
         }])
 
@@ -337,8 +337,8 @@
             $scope.dados = DadosVeiculos.getDados()
         }])
 
-        .controller('dash', ['$scope', 'dadosUser', function($scope, dadosUser) {
-            $scope.carros = dadosUser.getVeiculos();
+        .controller('dash', ['$scope', 'DadosVeiculos', function($scope, DadosVeiculos) {
+            $scope.carros = DadosVeiculos.getVeiculos();
             $scope.test = '';
         }]);
 })();
