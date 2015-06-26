@@ -19,9 +19,9 @@
     <splash density="port-xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
     <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
     <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
-    <name>E-Multas</name>
+    <name>E-Multa</name>
     <description>
-        E-Multas | Interface do usuário com o detran para visualizar suas multas com mais agilidade e facilidade
+        E-Multa | Interface do usuário com o detran para visualizar suas multas com mais agilidade e facilidade
     </description>
     <author email="xdevel@xdevel.com.br" href="xdevel.com.br">
       Xdevel Sistemas

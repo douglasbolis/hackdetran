@@ -1,5 +1,5 @@
 // App.js
-var app = angular.module('app', ['ngCookies', 'ionic', 'app.controllers']);
+var app = angular.module('app', ['ngCookies', 'ngRoute', 'ngResource', 'ionic', 'app.controllers']);
 
 app.run(function ($rootScope, $cookieStore, $state, $ionicPlatform) {
     $ionicPlatform.ready(function() {
@@ -48,8 +48,17 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 url: "/newcar",
                 templateUrl: "partials/newCar.html",
                 controller: "dashboardCtrl"
+            })
+            .state('dashboard.index', {
+                url: "/index",
+                views: {
+                    'menuContent': {
+                        templateUrl: "partials/index.html",
+                        controller: 'indexCtrl'
+                    }
+                }
             });
-    // default route           
+    // default route
     $urlRouterProvider.otherwise("/welcome");
 
 });
