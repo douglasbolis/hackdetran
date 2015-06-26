@@ -1,18 +1,23 @@
 package br.com.xdevel.crawlerdetran.model
 
 import br.com.xdevel.crawlerdetran.integrator.Crawler
+
 import org.joda.time.DateTime
+import org.joda.time.format.ISODateTimeFormat
+import spray.json._
+
 
 /**
  * Created by clayton on 22/06/15.
+ *
  */
 class CrawlerModel (placa: String,renavam: String) {
 
     private val crawler = new Crawler(placa,renavam)
     val tbServico02 = _getProp
-    val tbServicos03 = _getDebitos
-    val tbServicos04 = _getInfracoes
-    val tbServicos10 = _getPnalidades
+    val tbServico03 = _getDebitos
+    val tbServico04 = _getInfracoes
+    val tbServico10 = _getPnalidades
 
 
   private def _getProp : List[TField] = crawler.fieldsdiv02
@@ -25,63 +30,63 @@ class CrawlerModel (placa: String,renavam: String) {
 
 
 //utillizar depois na persistencia
-class TbServico02 (
-  var placa : String,
-  var renavam : String,
-  var placaAnterior : String,
-  var tipo : String,
-  var categoria: String,
-  var especie: String,
-  var lugares : String,
-  var marcaModelo: String,
-  var fabricacaoModelo: String,
-  var potencia: String,
-  var combustivel: String,
-  var cor: String,
-  var carroceria: String,
-  var nomeProprietario: String,
-  var recadastradoDetran: String,
-  var proprietarioAnterior: String,
-  var origemDadosVeiculo: String,
-  var municipioEmplacamento: String,
-  var licenciadoAte: String,
-  var adquirido: String,
-  var situacao: String,
-  var restricaoaVenda: String,
-  var infoContratoAditivo: String,
-  var infoPendenteFinanceiro: String,
-  var indicativoClonagem: String,
-  var impedimentos: String,
-  var averbacaoJudicial: String
+case class TbServico02 (
+  placa : String,
+  renavam : String,
+  placaAnterior : String,
+  tipo : String,
+  categoria: String,
+  especie: String,
+  lugares : String,
+  marcaModelo: String,
+  fabricacaoModelo: String,
+  potencia: String,
+  combustivel: String,
+  cor: String,
+  carroceria: String,
+  nomeProprietario: String,
+  recadastradoDetran: String,
+  proprietarioAnterior: String,
+  origemDadosVeiculo: String,
+  municipioEmplacamento: String,
+  licenciadoAte: String,
+  adquirido: String,
+  situacao: String,
+  restricaoaVenda: String,
+  infoContratoAditivo: String,
+  infoPendenteFinanceiro: String,
+  indicativoClonagem: String,
+  impedimentos: String,
+  averbacaoJudicial: String
 )
 
 
 
-class TField (var  label: String, var value: String)
+case class TField (label: String,value: String)
 
 
 //debitos
-class TbServico03 (
-  var numAuto: String,
-  var vencimento: DateTime,
-  var valorNominal:	BigDecimal,
-  var valorCorrigido:	BigDecimal,
-  var valorDesconto:		BigDecimal,
-  var valorJuros:		BigDecimal,
-  var valorMulta:		BigDecimal,
-  var valorAtual:	BigDecimal,
-  var signature: String)
+case class TbServico03 (
+  numAuto: String,
+  vencimento: DateTime,
+  valorNominal:	BigDecimal,
+  valorCorrigido:	BigDecimal,
+  valorDesconto:		BigDecimal,
+  valorJuros:		BigDecimal,
+  valorMulta:		BigDecimal,
+  valorAtual:	BigDecimal,
+  signature: String)
 
 
 
 //infracoes de autuacao cap04
 //penalidades (multas) cap10
-class TbServico0410(
-  var numAuto: String,
-  var descricao: String,
-  var localComplemento: String,
-  var situacao: String,
-  var signature: String)
+case class TbServico0410(
+  numAuto: String,
+  descricao: String,
+  localComplemento: String,
+  situacao: String,
+  signature: String)
 
 
 
