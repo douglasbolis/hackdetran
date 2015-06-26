@@ -13,7 +13,7 @@ import org.htmlcleaner.{TagNode, HtmlCleaner}
  */
 
 
-
+//TODO aplicar pattern matching nos filtros para evitar problemas de incompatibilidade de sequencias
 
 
 class Crawler(placa : String ,renavam : String) {
@@ -117,8 +117,8 @@ class Crawler(placa : String ,renavam : String) {
     (for{  d <- table
         }yield new
               TField(
-                d.getAllChildren.head.toString,
-                d.getElementsByName("SPAN",true).map(d=>d.getAllChildren.head.toString).head.toString)
+                d.getAllChildren.head.toString.replace("\\r\\n","").replace("&nbsp;","").trim,
+                d.getElementsByName("SPAN",true).map(d=>d.getAllChildren.head.toString).head.toString.replace("\\r\\n","").replace("&nbsp;","").trim)
     ).toList
 
   }

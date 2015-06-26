@@ -1,5 +1,24 @@
 var app = angular.module('app.controllers', []);
-app.controller('welcomeCtrl', function ($scope, $state, $cookieStore) {
+app.factory('dadosUser', function(){
+    var id = 1,
+        veiculos = [{id: id, placa: '132456', renavan: '4654asfaflh'}];
+
+    return {
+        getVeiculos: getVeiculos,
+        setVeiculo: setVeiculo
+    };
+
+    function getVeiculos() {
+        return veiculos
+    }
+
+    function setVeiculo(car) {
+        car.id = id + 1;
+        veiculos.push(car)
+    }
+})
+
+    .controller('welcomeCtrl', function ($scope, $state, $cookieStore, $location) {
 
     /**
      * SOCIAL LOGIN
@@ -36,7 +55,7 @@ app.controller('welcomeCtrl', function ($scope, $state, $cookieStore) {
                     }
                     user.profilePic = picResponse.data.url;
                     $cookieStore.put('userInfo', user);
-                    $state.go('dashboard');
+                    $location.path('/dashboard/index');
 
                 });
             });
@@ -80,7 +99,7 @@ app.controller('welcomeCtrl', function ($scope, $state, $cookieStore) {
                     }
                     user.profilePic = resp.image.url;
                     $cookieStore.put('userInfo', user);
-                    $state.go('dashboard');
+                    $location.path('/dashboard/index');
                 });
             }
         }
@@ -90,7 +109,9 @@ app.controller('welcomeCtrl', function ($scope, $state, $cookieStore) {
 });
 
 // Dashboard/Profile Controller
-app.controller('dashboardCtrl', function ($scope, $window, $state, $cookieStore, $ionicModal, $timeout, $ionicSideMenuDelegate) {
+app.controller('dashboardCtrl', [
+    '$scope', 'dadosUser', '$resource', '$window', '$state', '$cookieStore', '$ionicModal', '$timeout', '$ionicSideMenuDelegate',
+    function ($scope, dadosUser, $resource, $window, $state, $cookieStore, $ionicModal, $timeout, $ionicSideMenuDelegate) {
     // Set user details
     $scope.user = $cookieStore.get('userInfo');
     
@@ -100,13 +121,6 @@ app.controller('dashboardCtrl', function ($scope, $window, $state, $cookieStore,
         $state.go('welcome');
         $window.location.reload();
     };
-
-    // With the new view caching in Ionic, Controllers are only called
-    // when they are recreated or on app start, instead of every page change.
-    // To listen for when this page is active (for example, to refresh data),
-    // listen for the $ionicView.enter event:
-    //$scope.$on('$ionicView.enter', function(e) {
-    //});
 
     // Form data for the carro modal
     $scope.car = {};
@@ -134,12 +148,31 @@ app.controller('dashboardCtrl', function ($scope, $window, $state, $cookieStore,
 
     // Perform the carro action when the user submits the carro form
     $scope.doAdd = function() {
-        console.log('Doing carro', $scope.car);
+        //$scope.car.email = $scope.user.email;
+        $scope.msg = 'Veículo adicionado com sucesso';
+        dadosUser.setVeiculo($scope.car);
+        $scope.car = {};
+
+        console.log(dadosUser.getVeiculos());
+/*
+        var newCarPromise = $resource('/').save({}, $scope.car).$promise;
+
+        newCarPromise
+            .then(function (data) {
+                $scope.msg = 'Veículo adicionado com sucesso';
+                $scope.carros.append($scope.car);
+            })
+            .catch(function(error) {
+                console.log(error)
+            });*/
 
         // Simulate a carro delay. Remove this and replace with your carro
         // code if using a carro system
         $timeout(function() {
             $scope.closeAddCar();
-        }, 1000);
+        }, 500);
     };
-});
+}])
+    .controller('indexCtrl', ['$scope', 'dadosUser', function($scope, dadosUser) {
+        $scope.carros = dadosUser.getVeiculos()
+    }]);
