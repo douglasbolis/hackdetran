@@ -1,5 +1,5 @@
-var oauthApp = angular.module('oauthApp.controllers', []);
-oauthApp.controller('welcomeCtrl', function ($scope, $state, $cookieStore) {
+var app = angular.module('app.controllers', []);
+app.controller('welcomeCtrl', function ($scope, $state, $cookieStore) {
 
     /**
      * SOCIAL LOGIN
@@ -90,7 +90,7 @@ oauthApp.controller('welcomeCtrl', function ($scope, $state, $cookieStore) {
 });
 
 // Dashboard/Profile Controller
-oauthApp.controller('dashboardCtrl', function ($scope, $window, $state, $cookieStore) {
+app.controller('dashboardCtrl', function ($scope, $window, $state, $cookieStore, $ionicModal, $timeout, $ionicSideMenuDelegate) {
     // Set user details
     $scope.user = $cookieStore.get('userInfo');
     
@@ -99,5 +99,47 @@ oauthApp.controller('dashboardCtrl', function ($scope, $window, $state, $cookieS
         $cookieStore.remove("userInfo");
         $state.go('welcome');
         $window.location.reload();
+    };
+
+    // With the new view caching in Ionic, Controllers are only called
+    // when they are recreated or on app start, instead of every page change.
+    // To listen for when this page is active (for example, to refresh data),
+    // listen for the $ionicView.enter event:
+    //$scope.$on('$ionicView.enter', function(e) {
+    //});
+
+    // Form data for the carro modal
+    $scope.car = {};
+
+    // Create the carro modal that we will use later
+    $ionicModal.fromTemplateUrl('partials/newCar.html', {
+        scope: $scope
+    }).then(function(modal) {
+        $scope.modal = modal;
+    });
+
+    // Triggered in the carro modal to close it
+    $scope.closeAddCar = function() {
+        $scope.modal.hide();
+    };
+
+    // Open the carro modal
+    $scope.newCar = function() {
+        $scope.modal.show();
+    };
+
+    $scope.openmenu = function() {
+        $ionicSideMenuDelegate.toggleLeft();
+    };
+
+    // Perform the carro action when the user submits the carro form
+    $scope.doAdd = function() {
+        console.log('Doing carro', $scope.car);
+
+        // Simulate a carro delay. Remove this and replace with your carro
+        // code if using a carro system
+        $timeout(function() {
+            $scope.closeAddCar();
+        }, 1000);
     };
 });

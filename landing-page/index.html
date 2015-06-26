@@ -67,7 +67,7 @@
 	          <a href="#hero">Home</a>
 	        </li>
 	        <li>
-	          <a href="#features">Conheça</a>
+	          <a id="btnCOnheca" href="#features">Conheça</a>
 	        </li>
 	        <li>
 	          <a href="#image">Vantagens</a>
@@ -75,9 +75,9 @@
 	        <li>
 	          <a href="#gallery">Sobre</a>
 	        </li>
-	        <li>
+	        <!--<li>
 	          <a href="#faq">FAQ</a>
-	        </li>
+	        </li>-->
 	        <li>
 	          <a href="#slider">Team</a>
 	        </li>
@@ -106,7 +106,7 @@
 					<div class="lp-element animate" data-animate="fadeInDown">
 						<h1>e-Multa</h1>
 						<p class="lead">Mais praticidade e facilidade no acesso de multas pelo condutor!</p>
-						<p><a class="btn btn-primary btn-lg" role="button">Baixar Agora!</a> <a class="btn btn-danger btn-lg" role="button">Saiba Mais!</a></p>
+						<p><a class="btn btn-primary btn-lg" role="button">Baixar Agora!</a> <a href="#" onclick="$('#btnCOnheca').click()" role="navigation" class="btn btn-danger btn-lg" role="button">Saiba Mais!</a></p>
 					</div>
 				</div>
 			</div>
@@ -153,16 +153,16 @@
 					<div class="service-block animate" data-animate="fadeInLeft">
 						<span class="glyphicon glyphicon-barcode"></span>
 						<h3>Emissão</h3>
-						<p>With carefully thought-out design, Neue looks great on any device.</p>
-						<button type="button" class="btn btn-primary btn-md btn-rocket btn-rocket-default">Learn More</button>
+						<p>Emissão de DUA de pendencias relacionado ao seu carro.</p>
+						<button type="button" class="btn btn-warning btn-md btn-rocket btn-rocket-default" disabled="true">Em Breve</button>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-6">
 					<div class="service-block animate" data-animate="flipInX">
 						<span class="glyphicon glyphicon-comment"></span>
 						<h3>Comunicação</h3>
-						<p>With carefully thought-out design, Neue looks great on any device.</p>
-						<button type="button" class="btn btn-primary btn-md btn-rocket btn-rocket-default">Learn More</button>
+						<p>Comunicação direta entre o DETRAN e o condutor de forma fácil.</p>
+						<button type="button" class="btn btn-primary btn-md btn-rocket btn-rocket-default">Saiba Mais</button>
 					</div>
 				</div>
 			</div>
@@ -177,36 +177,38 @@
 	<section id="image" class="section" style="background-color:#FFF; border-top: 1px solid rgba(0, 0, 0, .1);">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12 sol-sm-12">
+				<div class="col-md-12">
 					<div class="overview animate" data-animate="flipInX">
 						<h1><strong>Vantagens</strong> do app</h1>
 						<p class="lead">Saiba as vantagens que o e-Multa oferece ao usuário: </p>
 					</div>
 				</div>
-				
-				<div class="col-md-4 col-sm-4 col-xs-6 text-center">
-					<span class="glyphicon glyphicon-plane animate" style="font-size: 8em;"  data-animate="fadeIn"></span>
-					<h3>Agilidade</h3> <p>Possibilita o registro de multas de maneira ágil, facilitando assim a rotina a ser desempenhada  e a notificação da multa.</p>
-				</div>
-				<div class="col-md-4 col-sm-4 col-xs-6 text-center">
-					<span class="glyphicon glyphicon-pencil animate" style="font-size: 8em;" data-animate="fadeIn"></span>
-					<h3>Praticidade</h3> <p>Praticidade e agilidade que permite tanto para o profissional de trânsito, quanto para o cidadão comodidade e clareza em todos os processos.</p>
-				</div>
-				<div class="col-md-4 col-sm-4 col-xs-6 text-center">
-					<span class="glyphicon glyphicon-user animate" style="font-size: 8em;" data-animate="fadeIn"></span>
-					<h3>Gestão</h3> <p>Facilita a organização do cidadão diante do seus deveres. <br/><br/></p>
-				</div>
-				<div class="col-md-4 col-sm-4 col-xs-6 text-center">
-					<span class="glyphicon glyphicon-envelope animate" style="font-size: 8em;" data-animate="fadeIn"></span>
-					<h3>Comunicação</h3> <p>Promove um meio de comunicação direta entre a entidade e o cidadão.</p>
-				</div>
-				<div class="col-md-4 col-sm-4 col-xs-6 text-center">
-					<span class="glyphicon glyphicon-comment animate" style="font-size: 8em;" data-animate="fadeIn"></span>
-					<h3>Interação</h3> <p>Favorece a veiculação de campanhas educativas e pesquisas diretamente com o condutor.</p>
-				</div>
-				<div class="col-md-4 col-sm-4 col-xs-6 text-center">
-					<span class="glyphicon glyphicon-dashboard animate" style="font-size: 8em;" data-animate="fadeIn"></span>
-					<h3>Facilidade</h3> <p>Sistema totalmente intuitivo, claro  dinâmico para facilitar a rotina do profissional e do cidadão.</p>
+
+				<div class="col-md-12">
+					<div class="col-lg-4 col-md-6 col-xs-12  text-center">
+						<span class="glyphicon glyphicon-plane animate" style="font-size: 5em;"  data-animate="fadeIn"></span>
+						<h3>Agilidade</h3> <p>Possibilita o registro de multas de maneira ágil, facilitando assim a rotina a ser desempenhada  e a notificação da multa.</p>
+					</div>
+					<div class="col-lg-4 col-md-6 col-xs-12  text-center">
+						<span class="glyphicon glyphicon-pencil animate" style="font-size: 5em;" data-animate="fadeIn"></span>
+						<h3>Praticidade</h3> <p>Praticidade e agilidade que permite tanto para o profissional de trânsito, quanto para o cidadão comodidade e clareza em todos os processos.</p>
+					</div>
+					<div class="col-lg-4 col-md-6 col-xs-12  text-center">
+						<span class="glyphicon glyphicon-user animate" style="font-size: 5em;" data-animate="fadeIn"></span>
+						<h3>Gestão</h3> <p>Facilita a organização do cidadão diante do seus deveres. <br/><br/></p>
+					</div>
+					<div class="col-lg-4 col-md-6 col-xs-12  text-center">
+						<span class="glyphicon glyphicon-envelope animate" style="font-size: 5em;" data-animate="fadeIn"></span>
+						<h3>Comunicação</h3> <p>Promove um meio de comunicação direta entre a entidade e o cidadão.</p>
+					</div>
+					<div class="col-lg-4 col-md-6 col-xs-12  text-center">
+						<span class="glyphicon glyphicon-comment animate" style="font-size: 5em;" data-animate="fadeIn"></span>
+						<h3>Interação</h3> <p>Favorece a veiculação de campanhas educativas e pesquisas diretamente com o condutor.</p>
+					</div>
+					<div class="col-lg-4 col-md-6 col-xs-12  text-center">
+						<span class="glyphicon glyphicon-dashboard animate" style="font-size: 5em;" data-animate="fadeIn"></span>
+						<h3>Facilidade</h3> <p>Sistema totalmente intuitivo, claro  dinâmico para facilitar a rotina do profissional e do cidadão.</p>
+					</div>
 				</div>
 				
 			</div>
@@ -239,7 +241,7 @@
 	
 	<!-- Start Text Block
 	================================================== -->
-	<section id="faq" class="section">
+	<!--<section id="faq" class="section">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 sol-sm-12">
@@ -248,9 +250,9 @@
 						<p class="lead">5 perguntas comuns </p>
 					</div>
 				</div>
-				<!--<div class="col-md-12 col-sm-12">
+				<div class="col-md-12 col-sm-12">
 					<img class="animate img-responsive" data-animate="fadeInLeft" src="http://placehold.it/1170x484" alt="" style="margin-bottom: 50px;"/>
-				</div>	-->
+				</div>	
 				<div class="col-md-12 col-sm-12">
 					<div class="faq-block animate" data-animate="fadeInLeft">
 						<div class="panel-group" id="accordion">
@@ -329,7 +331,7 @@
 				</div>		
 			</div>
 		</div>
-	</section>
+	</section>-->
 	
 	<!-- ==================================================
 	End Text Blcok -->
@@ -408,7 +410,7 @@
 	<!-- ==================================================
 	Start footer -->
 	<footer class="panel-footer">
-		<p class="text-primary text-center"><a href="#">eMulta&reg;</a> -  Copyright 2015</p>
+		<p class="text-primary text-center">Copyright 2015 - <a href="#">eMulta&reg;</a> by hackdetran - Todos os direitos reservados!</p>
 	</footer>
 	<!-- ==================================================
 	End footer -->
