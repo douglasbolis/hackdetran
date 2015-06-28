@@ -1,24 +1,18 @@
 package controllers
 
 
-import controllers.UserController._
-import models.CrawlerDetranContext._
+import models.MainJsonProtocol
+import MainJsonProtocol.Login
+import models.entities.{UserAuth, User}
+import lib.SecuredController
 import play.api.mvc.{Action, Controller}
 import spray.json._
-import models.entities._
-import models.MainJsonProtocol._
-
+import models.CrawlerContext._
 
 /**
  * Created by clayton on 26/06/15.
  */
 object UserController extends SecuredController {
-
-
-
-
-
-
   def login = Action(parse.json) { request =>
     (request.body ).toString.parseJson.convertTo[Login] match {
       case el: Login => {

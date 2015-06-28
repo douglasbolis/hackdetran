@@ -1,6 +1,7 @@
 package models.entities
 
-import models.CrawlerDetranContext._
+import models.CrawlerContext
+import net.fwbrasil.activate.entity.Entity
 
 /**
  * Created by clayton on 25/06/15.

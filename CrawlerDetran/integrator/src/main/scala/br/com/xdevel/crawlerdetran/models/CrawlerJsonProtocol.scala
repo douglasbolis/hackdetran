@@ -1,4 +1,4 @@
-package br.com.xdevel.crawlerdetran.model
+package br.com.xdevel.crawlerdetran.models
 
 import org.joda.time.DateTime
 import org.joda.time.format.ISODateTimeFormat

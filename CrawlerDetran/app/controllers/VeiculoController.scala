@@ -1,14 +1,16 @@
 package controllers
 
-import br.com.xdevel.crawlerdetran.model.CrawlerJsonProtocol.TListFieldJsonFormat
-import br.com.xdevel.crawlerdetran.model.CrawlerModel
-import controllers.UserController._
-import models.CrawlerDetranContext._
-import models.entities.{VeiculoEvento, VeiculoRegistro, Veiculo, User}
+import br.com.xdevel.crawlerdetran.models.CrawlerJsonProtocol.TListFieldJsonFormat
+import br.com.xdevel.crawlerdetran.models.CrawlerModel
+import models.MainJsonProtocol
+import MainJsonProtocol.{PostVeiculoEvento, PostVeiculo}
+import models.entities.{VeiculoEvento, VeiculoRegistro, Veiculo}
+import models.MainJsonProtocol
+import lib.SecuredController
 import play.api.mvc.Action
 import spray.json._
-import br.com.xdevel.crawlerdetran.model.CrawlerJsonProtocol._
-import models.MainJsonProtocol._
+import br.com.xdevel.crawlerdetran.models.CrawlerJsonProtocol._
+import models.CrawlerContext._
 
 /**
  * Created by clayton on 26/06/15.

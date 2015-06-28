@@ -1,8 +1,8 @@
 package models
 
 import models.entities._
+import models.CrawlerContext._
 import net.fwbrasil.activate.migration.Migration
-import models.CrawlerDetranContext._
 /**
  * Created by clayton on 25/06/15.
  */

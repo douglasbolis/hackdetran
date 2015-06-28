@@ -102,5 +102,3 @@ object MainJsonProtocol extends DefaultJsonProtocol {
   }
 
 }
-
-

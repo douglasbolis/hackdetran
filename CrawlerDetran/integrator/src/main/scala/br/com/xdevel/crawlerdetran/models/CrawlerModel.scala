@@ -1,4 +1,4 @@
-package br.com.xdevel.crawlerdetran.model
+package br.com.xdevel.crawlerdetran.models
 
 import br.com.xdevel.crawlerdetran.integrator.Crawler
 
