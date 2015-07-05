@@ -1,5 +1,7 @@
 package lib
 
+import models.CrawlerContext._
+import models.entities.User
 import play.api.Play
 import play.api.mvc.{Controller, RequestHeader, Results, Security}
 
@@ -12,11 +14,25 @@ trait Authentication {
   def checkHeader(request: RequestHeader): Option[String] = {
     request.headers.get(AUTH_TOKEN_HEADER) flatMap { token =>
       // do a check to see if there is a user and get their name
-      if ( Play.current.configuration.getString("play.crypto.secret").isDefined
-        && token == Play.current.configuration.getString("play.crypto.secret").get){
-        Some("phone")
+      if ( Play.current.configuration.getString("application.secret").isDefined && token == Play.current.configuration.getString("application.secret").get){
+        Some("root")
       }else{
-        Option.empty
+
+
+        if (!token.isEmpty){
+          transactional{
+            val user = (select[User].where(_.id :== token))
+
+            if (!user.isEmpty)
+              Some(user.head.email)
+            else
+              Option.empty
+
+          }
+
+        }else
+          Option.empty
+
       }
     }
   }

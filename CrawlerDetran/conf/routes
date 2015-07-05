@@ -3,19 +3,22 @@
 # ~~~~
 
 # Home page
-GET        /                    controllers.Application.index
+GET            /                                      controllers.Application.index
 #Usuario
-POST        /api/user/login                 controllers.UserController.login
+POST           /api/user/login                        controllers.UserController.get
 #Veiculo
-GET         /api/veiculos/get/:email        controllers.VeiculoController.get(email)
-POST        /api/veiculos/add               controllers.VeiculoController.add
-GET         /api/veiculos/delete/:id        controllers.VeiculoController.delete(id)
-GET         /api/veiculos/getdados/:id      controllers.VeiculoController.getdados(id)
-GET         /api/veiculos/atualizadados/:id controllers.VeiculoController.atualizadados(id)
+GET            /api/veiculos                         controllers.VeiculoController.list
+POST           /api/veiculos                          controllers.VeiculoController.add
+DELETE         /api/veiculos/:id                      controllers.VeiculoController.delete(id)
+#detalhes do veiculo
+GET            /api/veiculos/:id                      controllers.VeiculoController.getdados(id)
+GET            /api/veiculos/atualizadados/:id        controllers.VeiculoController.atualizadados(id)
+
+
 #Eventos do Veiculo
-GET         /api/veiculos/geteventos/:email controllers.VeiculoController.getEventos(email)
+GET            /api/veiculos/geteventos/:email        controllers.VeiculoController.getEventos(email)
 
 
 #cors
-OPTIONS  /                           controllers.Application.options(path="")
-OPTIONS  /*path                      controllers.Application.options(path)
+OPTIONS        /                                      controllers.Application.options(path="")
+OPTIONS        /*path                                 controllers.Application.options(path)

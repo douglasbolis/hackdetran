@@ -81,7 +81,7 @@ object xBuild extends Build {
     base = file("integrator"),
     settings = commonSettings ++ Seq(
       libraryDependencies ++= Seq(scalaj, htmlcleaner,
-                                  scalaxml,jodaTime,sprayJson))
+                                  scalaxml,jodaTime))
   )
 
 
@@ -105,8 +105,8 @@ object xBuild extends Build {
     aggregate = Seq(integrator),
     dependencies = Seq(integrator),
     settings = commonSettings ++ Seq(
-    libraryDependencies ++= Seq( cache , activate, activateSlick, activateSprayJson , activatePlay,
-       filters ,  jdbc , h2Database ,sprayJson))
+    libraryDependencies ++= Seq( cache , activate, activateSlick , activatePlay,
+       filters ,  jdbc , h2Database ))
   )  enablePlugins PlayScala
 
 
@@ -117,3 +117,5 @@ object xBuild extends Build {
   unmanagedResourceDirectories in Test <+=  baseDirectory ( _ /"target/web/public/test" )
 
 }
+
+

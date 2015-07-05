@@ -1,6 +1,6 @@
 package models.entities
 
-import models.CrawlerContext
+import models.CrawlerContext._
 import net.fwbrasil.activate.entity.Entity
 
 /**
@@ -28,6 +28,21 @@ class User( var first_name: String,
             var password: Option[String],
             var locale: Option[String],
             var timeZone: Option[String]) extends Entity
+
+object User {
+  def get(email: String): Option[User] = {
+    transactional{
+      val u = select[User] where(_.email :== email)
+
+      if (u.nonEmpty){
+        Some(u.head)
+      }else{
+        Option.empty
+      }
+    }
+  }
+}
+
 
 class UserAuth(
              var user: User,
