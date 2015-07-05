@@ -1,0 +1,50 @@
+<ion-view view-title="Dashboard">
+    <ion-content>
+		<div class="row">
+			<div class="col card" style="height: 90px">
+				<div class="item item-divider">
+					<span>Débito Total:</span>
+				</div>
+				<div class="item item-text-wrap">
+					R$1.750,00
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col card">
+				<div class="item">
+					<c3chart bindto-id="donut-plot1-chart">
+						<chart-column column-id="Penalidades"
+									  column-values="5"
+									  column-type="donut"/>
+						<chart-column column-id="Infrações Atuadas"
+									  column-values="3"
+									  column-type="donut"/>
+						<chart-donut title="Avisos" width="60"/>
+					</c3chart>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col col-100 card">
+				<div class="item item-divider">
+					<span class="uppercase">Campanhas do Detran:</span>
+				</div>
+				<div class="item item-text-wrap">
+					<div class="row">
+						<div class="col col-33">
+							<img src="http://thesys.blog.uol.com.br/images/pare.jpg" width="100%" heigth="100%"/>
+						</div>
+						<div class="col col-33">
+							<img src="http://www.detran.es.gov.br/images/logo_campanha_bike.jpg" width="100%" heigth="100%"/>
+						</div>
+						<div class="col col-33">
+							<img src="http://www.vigauto.com.br/images/meta/2b0a5d17-c9a8-4fbb-afae-7f4b4569817b/d2b74fba-9612-40f0-8242-1724a9543e39/14.jpg" width="100%" heigth="100%"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </ion-content>
+</ion-view>

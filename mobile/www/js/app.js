@@ -1,5 +1,5 @@
 // App.js
-var app = angular.module('app', ['ngCookies', 'ionic', 'app.controllers']);
+var app = angular.module('app', ['ngCookies', 'ngRoute', 'ngResource', 'ionic', 'app.controllers', 'gridshore.c3js.chart']);
 
 app.run(function ($rootScope, $cookieStore, $state, $ionicPlatform) {
     $ionicPlatform.ready(function() {
@@ -25,7 +25,7 @@ app.run(function ($rootScope, $cookieStore, $state, $ionicPlatform) {
             }
         } else if (next.name === "welcome") {
             event.preventDefault();
-            $state.go('dashboard');
+            $state.go('dashboard.dash');
         }
     });
 });
@@ -48,8 +48,35 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 url: "/newcar",
                 templateUrl: "partials/newCar.html",
                 controller: "dashboardCtrl"
-            });
-    // default route           
+            })
+            .state('dashboard.dash', {
+                url: "/dash",
+                views: {
+                    'menuContent': {
+                        templateUrl: "partials/dash.html",
+                        controller: 'dash'
+                    }
+                }
+            })
+            .state('dashboard.veiculos', {
+                url: "/veiculos",
+                views: {
+                    'menuContent': {
+                        templateUrl: "partials/veiculos.html",
+                        controller: 'veiculosCtrl'
+                    }
+                }
+            })
+        .state('dashboard.veiculo', {
+            url: "/veiculos/:veiculoId",
+            views: {
+                'menuContent': {
+                    templateUrl: "partials/veiculo.html",
+                    controller: 'veiculoCtrl'
+                }
+            }
+        });
+    // default route
     $urlRouterProvider.otherwise("/welcome");
 
 });
