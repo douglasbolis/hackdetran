@@ -1,8 +1,10 @@
 *.iml
 .idea/
 node_modules/
+dist/
 public/lib/
 .vagrant/
 demo/
 docs/
+lib/
 _MACOSX/

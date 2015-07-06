@@ -1,66 +1,67 @@
 package controllers
 
-import br.com.xdevel.crawlerdetran.model.CrawlerJsonProtocol.TListFieldJsonFormat
-import br.com.xdevel.crawlerdetran.model.CrawlerModel
-import controllers.UserController._
-import models.CrawlerDetranContext._
-import models.entities.{VeiculoEvento, VeiculoRegistro, Veiculo, User}
-import play.api.mvc.Action
-import spray.json._
-import br.com.xdevel.crawlerdetran.model.CrawlerJsonProtocol._
-import models.MainJsonProtocol._
+import br.com.xdevel.crawlerdetran.models.CrawlerModel
+import models.Serializers._
+import models.entities.{User, VeiculoEvento, VeiculoRegistro, Veiculo}
+import lib.SecuredController
+import play.api.libs.json._
+import models.CrawlerContext._
+
+import play.api.mvc._
+import play.api.libs.json._
+
+
 
 /**
  * Created by clayton on 26/06/15.
  */
-object VeiculoController extends SecuredController{
+object VeiculoController extends SecuredController {
+  def getdados(id: String) = Authenticated(parse.json) { request =>
 
-
-
-  def getdados(id : String)  = Action { request =>
-      transactional{
-        val veiculo = select[Veiculo] where(_.id :== id)
-
-        if(veiculo.isEmpty){
-          BadRequest(JsObject("err" -> JsString("Veículo não encontrado")).prettyPrint)
-        }else{
-          val registros = (select[VeiculoRegistro] where (_.veiculo :== veiculo))
-
-          if (registros.isEmpty){
-            Ok
-          }else{
-
-            val reg = registros.head
-            val regcap03 : JsValue = if (reg.reg03.isDefined) {reg.reg03.get.parseJson} else {JsArray()}
-            val regcap04 : JsValue = if (reg.reg03.isDefined) {reg.reg04.get.parseJson} else {JsArray()}
-            val regcap10 : JsValue = if (reg.reg03.isDefined) {reg.reg10.get.parseJson} else {JsArray()}
-
-            val json: spray.json.JsValue =
-              JsObject(
-                "cap02" -> reg.reg02.parseJson,
-                "cap03" -> regcap03,
-                "cap04" -> regcap04,
-                "cap10" -> regcap10
-              )
-
-            Ok(json.prettyPrint)
-
-          }
-
-
-        }
-      }
-
-
-  }
-
-
-  def atualizadados(id : String)  = Action { request =>
     transactional{
       val veiculo = select[Veiculo] where(_.id :== id)
 
       if(veiculo.isEmpty){
-        BadRequest(JsObject("err" -> JsString("Veículo não encontrado")).prettyPrint)
+        BadRequest(Json.obj("err" -> JsString("Veículo não encontrado")))
+      }else{
+        val registros = (select[VeiculoRegistro] where (_.veiculo :== veiculo))
+
+        if (registros.isEmpty){
+          Ok
+        }else{
+
+          val reg = registros.head
+          val regcap02 : JsValue = Json.parse(reg.reg02)
+          val regcap03 : JsValue = if (reg.reg03.isDefined) {Json.arr(reg.reg03.get)} else {Json.arr()}
+          val regcap04 : JsValue = if (reg.reg03.isDefined) {Json.arr(reg.reg04.get)} else {Json.arr()}
+          val regcap10 : JsValue = if (reg.reg03.isDefined) {Json.arr(reg.reg10.get)} else {Json.arr()}
+
+          val json =
+            Json.obj(
+              "cap02" -> regcap02,
+              "cap03" -> regcap03,
+              "cap04" -> regcap04,
+              "cap10" -> regcap10
+            )
+
+          Ok(json)
+
+        }
+
+
+      }
+    }
+
+  }
+
+
+
+  def atualizadados(id : String)  = Authenticated { request =>
+    transactional{
+      val veiculo = select[Veiculo] where(_.id :== id)
+
+      if(veiculo.isEmpty){
+        BadRequest(Json.obj("err" -> JsString("Veículo não encontrado")))
       }else{
         _registraVeiculo(veiculo.head,true)
         Ok
@@ -71,41 +72,49 @@ object VeiculoController extends SecuredController{
   }
 
 
-  def get(email: String) = Action { request =>
+  def list = Authenticated { request =>
 
-    try{
+    val email = checkHeader(request)
+    if (email.isDefined){
+      try{
 
 
-      val user = UserController.get(email)
+        val user = User.get(email.get)
 
 
-      transactional{
+        transactional{
 
-        if (user.nonEmpty){
-          val veiculos = select[Veiculo]
-            .where(v => v.user :== user.head)
+          if (user.nonEmpty){
+            val veiculos = select[Veiculo]
+              .where(v => v.user :== user.head)
 
-          Ok(JsArray(veiculos.map(d=> new PostVeiculo(d.user.email,d.placa,d.renavam,d.id).toJson).toVector).prettyPrint)
+            Ok(Json.arr(veiculos.map(d=> new PostVeiculo(d.placa,d.renavam,d.id))))
 
-        }else{
-          Ok(JsArray().prettyPrint)
+          }else{
+            Ok(Json.arr())
+          }
         }
+
+      }catch {
+        case e : Exception =>  BadRequest(Json.obj( "err" ->  JsString(e.getMessage)))
       }
 
-    }catch {
-      case e : Exception =>  BadRequest(JsObject( "err" ->  JsString(e.getMessage)).prettyPrint)
+    } else{
+
+      Ok(Json.arr())
     }
+
 
 
   }
 
 
-  def getEventos(email: String) = Action { request =>
+  def getEventos(email: String) = Authenticated { request =>
 
     try{
 
 
-      val user = UserController.get(email)
+      val user = User.get(email)
 
 
       transactional{
@@ -129,45 +138,63 @@ object VeiculoController extends SecuredController{
 
           def eventos : List[PostVeiculoEvento] =  veiculos.flatMap(d=>{getEventos(d,eventos)})
 
-          Ok(JsArray(eventos.map(d=>d.toJson).toVector).prettyPrint)
+          Ok(Json.arr(eventos))
 
         }else{
-          Ok(JsArray().prettyPrint)
+          Ok(Json.arr())
         }
       }
 
     }catch {
-      case e : Exception =>  BadRequest(JsObject( "err" ->  JsString(e.getMessage)).prettyPrint)
+      case e : Exception =>  BadRequest(Json.obj( "err" ->  JsString(e.getMessage)))
     }
 
 
   }
 
-  def add  = Action(parse.json) { request =>
-    (request.body ).toString.parseJson.convertTo[PostVeiculo] match {
-      case el: PostVeiculo => {
-        val user = UserController.get(el.email)
-        transactional{
-          val veiculos = select[Veiculo] where(v => (v.user :== user) :&& (v.placa :== el.placa) :&& (v.renavam :== el.renavam))
+  def add  = Authenticated(parse.json) { request =>
 
-          if (veiculos.isEmpty){
-            // novo veiculo
-            //TODO checar existencia do usuario com try except
-            val newveiculo = new Veiculo(user.get,el.placa,el.renavam)
-            _registraVeiculo(newveiculo,false)
-            Ok
-          }else{
-            BadRequest(JsObject( "err" ->  JsString("Veículo Existente")).prettyPrint)
+    val email = checkHeader(request)
+    if (email.isDefined) {
+      val postveiculofrm = request.body.validate[PostVeiculo]
+
+      postveiculofrm.fold(
+        errors => {
+          BadRequest(Json.obj("err" -> JsError.toFlatJson(errors)))
+        },
+        el => {
+
+          val user = User.get(email.get)
+          transactional{
+            val veiculos = select[Veiculo] where(v => (v.user :== user) :&& (v.placa :== el.placa) :&& (v.renavam :== el.renavam))
+
+            if (veiculos.isEmpty){
+              // novo veiculo
+              //TODO checar existencia do usuario com try except
+              val newveiculo = new Veiculo(user.get,el.placa,el.renavam)
+              _registraVeiculo(newveiculo,false)
+              Ok
+            }else{
+              BadRequest(Json.obj( "err" ->  JsString("Veículo Existente")))
+            }
           }
-        }
 
-      }
-      case _ => BadRequest(JsObject( "err" ->  JsString("Invalid format for PostVeiculo")).prettyPrint)
+
+        })
+    }else {
+      Unauthorized
     }
+
+
+
+
+
 
   }
 
-  def delete (id : String)  = Action { request =>
+
+
+  def delete (id : String)  = Authenticated { request =>
 
     def getbyId(id: String) = transactional {
       select[Veiculo] where (_.id :== id)
@@ -176,7 +203,7 @@ object VeiculoController extends SecuredController{
     val v = getbyId(id)
 
     if (v.isEmpty) {
-      BadRequest(JsObject("err" -> JsString("Veiculo não encontrado")).prettyPrint)
+      BadRequest(Json.obj("err" -> JsString("Veiculo não encontrado")))
     } else {
       transactional {
         v.foreach(d => {
@@ -215,22 +242,13 @@ object VeiculoController extends SecuredController{
 
       new VeiculoRegistro(
         veiculo,
-        model.tbServico02.toJson.prettyPrint,
-        Some(JsArray(model.tbServico03.map(d=>d.toJson).toVector).prettyPrint),
-        Some(JsArray(model.tbServico04.map(d=>d.toJson).toVector).prettyPrint),
-        Some(JsArray(model.tbServico10.map(d=>d.toJson).toVector).prettyPrint)
+        model.tbServico02.toString,
+        Some(Json.arr(model.tbServico03).toString),
+        Some(Json.arr(model.tbServico04).toString),
+        Some(Json.arr(model.tbServico10).toString)
       )
     }
 
-
-//    val json: spray.json.JsValue =
-//
-//      JsObject(
-//        "cap02" -> model.tbServico02.toJson,
-//        "cap03" -> model.tbServico03.toJson,
-//        "cap04" -> model.tbServico04.toJson,
-//        "cap10" -> model.tbServico10.toJson
-//      )
   }
 
 }

@@ -13,6 +13,8 @@ object Global extends WithFilters(CorsFilter) with GlobalSettings {
 
 }
 
+
+
 object CorsFilter extends Filter {
 
   def apply (nextFilter: (RequestHeader) => Future[Result])(requestHeader: RequestHeader): Future[Result] = {

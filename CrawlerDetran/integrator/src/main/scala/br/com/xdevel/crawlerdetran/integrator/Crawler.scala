@@ -1,6 +1,6 @@
 package br.com.xdevel.crawlerdetran.integrator
 
-import br.com.xdevel.crawlerdetran.model._
+import br.com.xdevel.crawlerdetran.models._
 import org.joda.time.DateTime
 
 import scalaj.http.Http
