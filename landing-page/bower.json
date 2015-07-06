@@ -17,6 +17,9 @@
     "tests"
   ],
   "dependencies": {
-    "angularjs": "~1.4.1"
+    "angularjs": "~1.4.1",
+    "jquery.localScroll": "~1.4.0",
+    "jquery-validation": "~1.14.0",
+    "jquery-form": "~3.46.0"
   }
 }
