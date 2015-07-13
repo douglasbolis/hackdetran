@@ -1,11 +1,8 @@
-package br.com.xdevel.crawlerdetran.model
+package br.com.xdevel.crawlerdetran.models
 
 import br.com.xdevel.crawlerdetran.integrator.Crawler
 
 import org.joda.time.DateTime
-import org.joda.time.format.ISODateTimeFormat
-import spray.json._
-
 
 /**
  * Created by clayton on 22/06/15.

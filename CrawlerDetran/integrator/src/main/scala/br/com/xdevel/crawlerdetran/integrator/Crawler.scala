@@ -1,6 +1,6 @@
 package br.com.xdevel.crawlerdetran.integrator
 
-import br.com.xdevel.crawlerdetran.model._
+import br.com.xdevel.crawlerdetran.models._
 import org.joda.time.DateTime
 
 import scalaj.http.Http
@@ -41,8 +41,6 @@ class Crawler(placa : String ,renavam : String) {
     filterTable0410("div_servicos_10",hresp.toList)
   )
 
-
-  //celnlef8
 
 
   // debitos

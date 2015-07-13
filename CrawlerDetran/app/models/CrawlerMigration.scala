@@ -1,8 +1,8 @@
 package models
 
 import models.entities._
+import models.CrawlerContext._
 import net.fwbrasil.activate.migration.Migration
-import models.CrawlerDetranContext._
 /**
  * Created by clayton on 25/06/15.
  */
@@ -17,12 +17,12 @@ class CrawlerMigration extends Migration {
     table[User]
       .createTable(
         _.column[String]("first_name"),
-        _.column[Option[String]]("last_name"),
-        _.column[Option[String]]("gender"),
-        _.column[Option[String]]("link"),
+        _.column[String]("last_name"),
+        _.column[String]("gender"),
+        _.column[String]("link"),
         _.column[String]("email"),
-        _.column[Option[String]]("locale"),
-        _.column[Option[String]]("timeZone")
+        _.column[String]("locale"),
+        _.column[String]("timeZone")
 
       ).ifNotExists
 
@@ -49,9 +49,9 @@ class CrawlerMigration extends Migration {
     table[VeiculoRegistro]
       .createTable(
         _.column[String]("reg02"),
-        _.column[Option[String]]("reg03"),
-        _.column[Option[String]]("reg04"),
-        _.column[Option[String]]("reg10")
+        _.column[String]("reg03"),
+        _.column[String]("reg04"),
+        _.column[String]("reg10")
       ).ifNotExists
 
     table[VeiculoRegistro]

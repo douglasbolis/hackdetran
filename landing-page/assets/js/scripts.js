@@ -1,4 +1,4 @@
-(function($) {
+jQuery(function($) {
     "use strict";
 
     function parallax() {
@@ -87,4 +87,4 @@
             });
         });
     };
-})(jQuery);
+});

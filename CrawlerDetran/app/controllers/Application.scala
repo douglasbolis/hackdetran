@@ -1,56 +1,35 @@
 package controllers
 
-import br.com.xdevel.crawlerdetran.model.CrawlerJsonProtocol._
-import play.api._
+import play.api.http.HeaderNames
 import play.api.mvc._
-import scala.concurrent.ExecutionContext
-import br.com.xdevel.crawlerdetran.integrator._
-import ExecutionContext.Implicits.global
-import org.joda.time.DateTime
-import br.com.xdevel.crawlerdetran.model._
-import spray.json._
+import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.Future
 
 
-object Application extends SecuredController {
-
-  def index = Authenticated {
-    val model = new CrawlerModel("OCZ8775","00345508807")
-
-
-
-
-    val json: spray.json.JsValue =
-
-      JsObject(
-      "cap02" -> model.tbServico02.toJson,
-      "cap03" -> model.tbServico03.toJson,
-      "cap04" -> model.tbServico04.toJson,
-      "cap10" -> model.tbServico10.toJson
-    )
-
-
-    Ok(json.prettyPrint)
-  }
-
-
-  def someApi = Authenticated { req =>
-    // do something
-    // The username is available in the request
-    val username: String = req.user
+object Application extends Controller {
+  def index = Action {
     Ok
   }
 
+  def options(path: String) = CorsAction {
+    Action { request =>
+      Ok.withHeaders(ACCESS_CONTROL_ALLOW_HEADERS -> Seq(AUTHORIZATION, CONTENT_TYPE, "Target-URL").mkString(","))
+    }
+  }
+}
 
-//  def sayHello = Action { request =>
-//    request.body.asJson.map { json =>
-//      (json \ "name").asOpt[String].map { name =>
-//        Ok("Hello " + name)
-//      }.getOrElse {
-//        BadRequest("Missing parameter [name]")
-//      }
-//    }.getOrElse {
-//      BadRequest("Expecting Json data")
-//    }
-//  }
 
+
+// Adds the CORS header
+case class CorsAction[A](action: Action[A]) extends Action[A] {
+
+  def apply(request: Request[A]): Future[Result] = {
+    action(request).map(result => result.withHeaders(HeaderNames.ACCESS_CONTROL_ALLOW_ORIGIN -> "*",
+      HeaderNames.ALLOW -> "*",
+      HeaderNames.ACCESS_CONTROL_ALLOW_METHODS -> "POST, GET, PUT, DELETE, OPTIONS",
+      HeaderNames.ACCESS_CONTROL_ALLOW_HEADERS -> "Origin, X-Requested-With, Content-Type, Accept, Referer, User-Agent"
+    ))
+  }
+
+  lazy val parser = action.parser
 }

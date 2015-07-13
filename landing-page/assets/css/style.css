@@ -365,7 +365,7 @@ label {
   position: fixed;
   background: url('../images/traffic-1.jpg') center center no-repeat; 
   background-size: cover;
-  z-index: -100;
+  z-index: -100;x	
 }
 
 /*	Navbar
@@ -570,7 +570,7 @@ label {
 	==================================================*/ 
 #newsletter {
 	text-align: center;
-	height: 83%
+	
 }
 #newsletter .overview p.lead {
 	margin: 30px 10%;

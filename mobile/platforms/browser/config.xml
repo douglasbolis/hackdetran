@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ionicframework.angularoauth825929" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>AngularOAuth</name>
+<widget id="com.prodution.emultas" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>E-Multas</name>
     <description>
-        An Ionic Framework and Cordova project.
+        E-Multas | Interface do usuário com o detran para visualizar suas multas com mais agilidade e facilidade
     </description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
+    <author email="xdevel@xdevel.com.br" href="xdevel.com.br">
+      Xdevel Sistemas
     </author>
     <content src="index.html" />
     <access origin="*" />

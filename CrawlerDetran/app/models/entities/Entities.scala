@@ -1,6 +1,7 @@
 package models.entities
 
-import models.CrawlerDetranContext._
+import models.CrawlerContext._
+import net.fwbrasil.activate.entity.Entity
 
 /**
  * Created by clayton on 25/06/15.
@@ -28,6 +29,21 @@ class User( var first_name: String,
             var locale: Option[String],
             var timeZone: Option[String]) extends Entity
 
+object User {
+  def get(email: String): Option[User] = {
+    transactional{
+      val u = select[User] where(_.email :== email)
+
+      if (u.nonEmpty){
+        Some(u.head)
+      }else{
+        Option.empty
+      }
+    }
+  }
+}
+
+
 class UserAuth(
              var user: User,
              var network: String,
@@ -44,7 +60,8 @@ class VeiculoRegistro (
                       ) extends Entity
 
 
-class VeiculoEvento ( var title: String ,
+class VeiculoEvento ( var veiculo: Veiculo,
+                      var title: String ,
                       var description: String ,
                       var iddescription : String,
                       var isRead: Boolean) extends Entity
